@@ -1,0 +1,82 @@
+html {
+    background-color: #0e0b16;
+
+}
+
+.calculator-container{
+    border-radius: 1.75rem;
+    margin: 16.7vh auto;
+    background-color: #413a54;
+    height: 65vh;
+    width: 50vw;
+    padding: 2rem;
+
+}
+
+.display-screen{
+    font-size: 5rem;
+    color: red;
+    background-color: lightgray;
+    height: 15vh;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-evenly;
+}
+
+.display-numbers--calc{
+    font-size: 2.5rem;
+    color: red;
+}
+
+.display-numbers--result{
+    font-size: 4.5rem;
+    color: blue;
+}
+
+.number-container{
+    font-size: 2rem;
+    width: 60%;
+    height: 67.5%;
+    margin: 0.5rem 0;
+}
+
+.numbers ul{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+    align-items: center;
+
+}
+
+.buttons-n{
+    box-sizing: border-box;
+    display: inline;
+    font-size: 6rem;
+    padding: 0rem 4rem;
+    text-align: center;
+
+    height: 6.5rem;
+    width: 12rem;
+    border: outset 5px grey;
+    background-color: blue;
+
+}
+
+.buttons-n:hover{
+    color: magenta;
+}
+
+.buttons-n:nth-last-child(2) {
+    background-color: red;
+}
+
+
+.operations {
+    color: red;
+
+}
