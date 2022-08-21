@@ -42,12 +42,12 @@ html {
     width: 60%;
     height: 67.5%;
     margin: 0.5rem 0;
+    display: flex;
 }
 
 .numbers ul{
     display: flex;
     flex-direction: row;
-    /* justify-content: space-between; */
     flex-wrap: wrap;
     align-items: center;
 
@@ -61,7 +61,7 @@ html {
     text-align: center;
 
     height: 6.5rem;
-    width: 12rem;
+    width: 33.33%;
     border: outset 5px grey;
     background-color: blue;
 
