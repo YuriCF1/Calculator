@@ -5,7 +5,8 @@ html {
 
 .calculator-container{
     border-radius: 1.75rem;
-    margin: 16.7vh auto;
+    /* margin: 16.7vh auto; */
+    margin: 14vh auto;
     background-color: #413a54;
     height: 65vh;
     width: 50vw;
@@ -37,46 +38,41 @@ html {
     color: blue;
 }
 
-.number-container{
-    font-size: 2rem;
-    width: 60%;
-    height: 67.5%;
+.pads-container{
     margin: 0.5rem 0;
     display: flex;
+    width: 100%;
 }
 
-.numbers ul{
+.numbers {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
-
+    width: auto;
+    margin-right: 1rem;
 }
 
 .buttons-n{
-    box-sizing: border-box;
-    display: inline;
     font-size: 6rem;
-    padding: 0rem 4rem;
     text-align: center;
-
-    height: 6.5rem;
     width: 33.33%;
+    height: 33.33%;
+
+    box-sizing: border-box;
     border: outset 5px grey;
     background-color: blue;
-
+    cursor: pointer;
 }
 
 .buttons-n:hover{
     color: magenta;
 }
 
-.buttons-n:nth-last-child(2) {
-    background-color: red;
+.buttons-n:nth-last-child(1) {
+    background-color: white;
+    
 }
 
-
-.operations {
-    color: red;
-
+.buttons-n:nth-last-child(2) {
+    background-color: red;
 }
