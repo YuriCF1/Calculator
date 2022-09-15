@@ -5,10 +5,9 @@ html {
 
 .calculator-container{
     border-radius: 1.75rem;
-    /* margin: 16.7vh auto; */
-    margin: 14vh auto;
+    margin: 5vh auto;
     background-color: #413a54;
-    height: 65vh;
+    height: 80vh;
     width: 50vw;
     padding: 2rem;
 
@@ -42,6 +41,7 @@ html {
     margin: 0.5rem 0;
     display: flex;
     width: 100%;
+    height: 69%; 
 }
 
 .numbers {
@@ -56,7 +56,7 @@ html {
     font-size: 6rem;
     text-align: center;
     width: 33.33%;
-    height: 33.33%;
+    height: 8.8rem;
 
     box-sizing: border-box;
     border: outset 5px grey;
