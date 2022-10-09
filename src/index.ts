@@ -2,14 +2,15 @@ const numbers = document.querySelectorAll('.buttons-n');
 const mainDisplay = document.getElementById('currentDisplay');
 const operator = document.querySelectorAll('[data-op]');
 
+let numD = mainDisplay!.textContent;
+
 //Adding the event of click
 numbers.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target as HTMLElement;
         let targetText = target.textContent;
-        let num = Number(target.textContent)
-        showsOnDisplay(targetText!)
-        console.log(target);
+        showsOnDisplay(numD!, targetText!)
+        // console.log(target);
 
     })
 })
@@ -17,7 +18,9 @@ numbers.forEach((num) => {
 operator.forEach((op) => {
     op.addEventListener('click', (e) => {
         let target = e.target as HTMLElement;
-        let targetOp = target.dataset.op;
+        var targetOp = target.dataset.op;
+
+
 
         switch (targetOp) {
             case "/":
@@ -30,7 +33,9 @@ operator.forEach((op) => {
                 console.log('Raiz');
                 break
             case "+":
-                console.log('Soma');
+                // console.clear()
+                showsOnDisplay(numD!, targetOp)
+                Sums(numD!, targetOp)
                 break
             case "-":
                 console.log('Menos');
@@ -44,14 +49,15 @@ operator.forEach((op) => {
 
 // ! diz explicitamente o valor não é nulo ou indefinido
 // Putting the number in the display
-function showsOnDisplay(targetText: string) {
-    console.log(mainDisplay!.innerHTML);
-    mainDisplay!.innerHTML += targetText;
+function showsOnDisplay(numD: string = '', targetParse: string = '') {
+    if (mainDisplay!.textContent != numD || targetParse) {
+        mainDisplay!.innerHTML += `${numD}${targetParse}`;
+    }
+}
+
+function Sums(numD: string, targetOp: string) {
+    console.log(numD, targetOp + 'A');
 
 }
 
-function Sums(num: string) {
-    console.log(num);
-
-}
 
