@@ -26,8 +26,8 @@
   <body>
     <section class="calculator-container">
       <div class="display-screen">
-        <span class="display-numbers--calc" id="calc">100</span>
-        <span class="display-numbers--current" id="currentDisplay">100</span>
+        <span class="display-numbers--calc" id="calc"></span>
+        <span class="display-numbers--current" id="currentDisplay"></span>
       </div>
       <div class="pads-container">
         <div class="">
@@ -49,12 +49,12 @@
         </div>
         <div>
           <ul class="operations">
-            <button class="fa-solid fa-divide buttons-o"></button>
-            <button class="fa-solid fa-percent buttons-o"></button>
-            <button class="fa-solid fa-square-root-variable buttons-o"></button>
-            <button class="fa-solid fa-plus buttons-o"></button>
-            <button class="fa-solid fa-minus buttons-o"></button>
-            <button class="fa-solid fa-xmark buttons-o"></button>
+            <button class="fa-solid fa-divide buttons-o" data-op="/"></button>
+            <button class="fa-solid fa-percent buttons-o" data-op="per"></button>
+            <button class="fa-solid fa-square-root-variable buttons-o" data-op="root"></button>
+            <button class="fa-solid fa-plus buttons-o" data-op="+"></button>
+            <button class="fa-solid fa-minus buttons-o" data-op="-"></button>
+            <button class="fa-solid fa-xmark buttons-o" data-op="x"></button>
           </ul>
         </div>
       </div>
