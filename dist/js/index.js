@@ -1,13 +1,14 @@
 "use strict";
 const numbers = document.querySelectorAll('.buttons-n');
-const mainDisplay = document.getElementById('currentDisplay');
 const operator = document.querySelectorAll('[data-op]');
-let numD = mainDisplay.textContent;
+const calcDisplay = document.getElementById('calc');
+const mainDisplay = document.getElementById('currentDisplay');
+let displayNumber = mainDisplay.textContent;
 numbers.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target;
-        let targetText = target.textContent;
-        showsOnDisplay(numD, targetText);
+        var targetText = target.textContent;
+        showsOnDisplay(displayNumber, targetText);
     });
 });
 operator.forEach((op) => {
@@ -25,8 +26,8 @@ operator.forEach((op) => {
                 console.log('Raiz');
                 break;
             case "+":
-                showsOnDisplay(numD, targetOp);
-                Sums(numD, targetOp);
+                showsOnDisplay(displayNumber, targetOp);
+                Sums(mainDisplay.innerHTML);
                 break;
             case "-":
                 console.log('Menos');
@@ -37,11 +38,16 @@ operator.forEach((op) => {
         }
     });
 });
-function showsOnDisplay(numD = '', targetParse = '') {
-    if (mainDisplay.textContent != numD || targetParse) {
-        mainDisplay.innerHTML += `${numD}${targetParse}`;
-    }
+function showsOnDisplay(displayNumber = '', targetInt = '') {
+    mainDisplay.innerHTML += `${displayNumber}${targetInt}`;
 }
-function Sums(numD, targetOp) {
-    console.log(numD, targetOp + 'A');
+function showsCalcDisplay(result) {
+    let toMath = eval(result);
+    console.log(toMath);
+    let finalResult = toMath.toString();
+    calcDisplay.innerHTML = finalResult;
+}
+function Sums(currentValue) {
+    let valueToNumber = currentValue.substring(0, currentValue.length - 1);
+    showsCalcDisplay(valueToNumber);
 }
