@@ -32,6 +32,7 @@ function showsOnDisplay(displayNumber: string = '', targetInt: string = '') {
 
 }
 
+//Mostrando o resultado no display de cálculo
 function showsCalcDisplay(result: string) {
     let cleanValue = result.substring(0, result.length - 1);
     console.log(cleanValue);
