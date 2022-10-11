@@ -20,6 +20,35 @@ operator.forEach((op) => {
         let target = e.target as HTMLElement;
         var targetOp = target.dataset.op;
 
+        showsOnDisplay(displayNumber!, targetOp!)
+        showsCalcDisplay(mainDisplay!.innerHTML)
+    })
+})
+
+// ! diz explicitamente o valor não é nulo ou indefinido
+// Putting the number on the display
+function showsOnDisplay(displayNumber: string = '', targetInt: string = '') {
+        mainDisplay!.innerHTML += `${displayNumber}${targetInt}`;
+
+}
+
+function showsCalcDisplay(result: string) {
+    let cleanValue = result.substring(0, result.length - 1);
+    console.log(cleanValue);
+    let toMath = eval(cleanValue)
+    let finalResult = toMath.toString()
+    calcDisplay!.innerHTML = finalResult;
+
+}
+
+
+//CERTO___________________________________________
+/*
+operator.forEach((op) => {
+    op.addEventListener('click', (e) => {
+        let target = e.target as HTMLElement;
+        var targetOp = target.dataset.op;
+
         switch (targetOp) {
             case "/":
                 console.log('Dividir');
@@ -34,7 +63,7 @@ operator.forEach((op) => {
                 showsOnDisplay(displayNumber!, targetOp!)
                 Sums(mainDisplay!.innerHTML)
                 break
-            case "-":
+            case "-":   
                 console.log('Menos');
                 break
             case "x":
@@ -65,47 +94,4 @@ function Sums(currentValue: string) {
     showsCalcDisplay(valueToNumber);
 }
 
-
-
-    // let valueToNumber = Number(currentValue.substring(0, currentValue.length - 1))
-    // let calclutationSum = currentValue + currentValue
-    // console.log(currentValue);
-    // console.log(valueToNumber);
-
-
-// case "+":
-    // showsOnDisplay(numD!, targetOp)
-    // Sums(mainDisplay!.innerHTML, targetOp)
-
-
-
-
-/*
-function Sums(currentNumber: string, targetOp: string = '') {
-    showsOnDisplay(numD!, targetOp) 
-
-    let number = currentNumber.substring(0, currentNumber.length - 1) //Tira o '+' do final
-    console.log(number);
-    let array = currentNumber.split('+') 
-    if (array.length > 1) {
-       array.pop();
-    }
-    
-    const nArray : number[] = array.map((n) => {
-        return Number(n)
-
-    })
-
-    // for (let i = 0; i < nArray!.length; i++) {
-    //    var result = nArray![i] + nArray![i +1] 
-       
-    // }
-
-    const result = nArray.map((n) => {
-        n += n
-
-    })
-
-    console.log(result);
-}
 */

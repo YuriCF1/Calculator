@@ -15,39 +15,17 @@ operator.forEach((op) => {
     op.addEventListener('click', (e) => {
         let target = e.target;
         var targetOp = target.dataset.op;
-        switch (targetOp) {
-            case "/":
-                console.log('Dividir');
-                break;
-            case "per":
-                console.log('Porcentagem');
-                break;
-            case "root":
-                console.log('Raiz');
-                break;
-            case "+":
-                showsOnDisplay(displayNumber, targetOp);
-                Sums(mainDisplay.innerHTML);
-                break;
-            case "-":
-                console.log('Menos');
-                break;
-            case "x":
-                console.log('Multiplicação');
-                break;
-        }
+        showsOnDisplay(displayNumber, targetOp);
+        showsCalcDisplay(mainDisplay.innerHTML);
     });
 });
 function showsOnDisplay(displayNumber = '', targetInt = '') {
     mainDisplay.innerHTML += `${displayNumber}${targetInt}`;
 }
 function showsCalcDisplay(result) {
-    let toMath = eval(result);
-    console.log(toMath);
+    let cleanValue = result.substring(0, result.length - 1);
+    console.log(cleanValue);
+    let toMath = eval(cleanValue);
     let finalResult = toMath.toString();
     calcDisplay.innerHTML = finalResult;
-}
-function Sums(currentValue) {
-    let valueToNumber = currentValue.substring(0, currentValue.length - 1);
-    showsCalcDisplay(valueToNumber);
 }
