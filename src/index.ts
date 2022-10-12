@@ -28,7 +28,7 @@ operator.forEach((op) => {
 // ! diz explicitamente o valor não é nulo ou indefinido
 // Putting the number on the display
 function showsOnDisplay(displayNumber: string = '', targetInt: string = '') {
-        mainDisplay!.innerHTML += `${displayNumber}${targetInt}`;
+    mainDisplay!.innerHTML += `${displayNumber}${targetInt}`;
 
 }
 
