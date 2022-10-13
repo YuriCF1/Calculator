@@ -11,6 +11,18 @@ html {
   padding: 2rem;
 }
 
+.operations-n {
+  display: flex;
+  align-items: flex-end;
+  width: auto;
+  max-width: auto;
+  
+}
+.operations-n #result {
+  font-size: 2.75rem;
+  margin-right: 1rem;
+}
+
 .display-screen {
   font-size: 5rem;
   color: red;
@@ -26,7 +38,7 @@ html {
 }
 
 .display-numbers--calc {
-  font-size: 2.5rem;
+  font-size: 4rem;
   color: red;
 }
 

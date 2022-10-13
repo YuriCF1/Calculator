@@ -12,7 +12,7 @@ numbers.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target as HTMLElement;
         let targetText = target.textContent;
-        showsOnDisplay(displayNumber!, targetText!) //Manda a área e o conteúdo da tecla
+        showsOnDisplay(displayNumber!, targetText!, true) //Manda a área e o conteúdo da tecla
     
         console.log(clicks);
         verifyTheCounting(clicks)
@@ -25,30 +25,36 @@ operator.forEach((op) => {
         let targetOp = target.dataset.op;
         clicks += 1;
         
-        showsOnDisplay(displayNumber!, targetOp!);
-        // makeCounts(mainDisplay!.innerHTML) //Calcula 
+        showsOnDisplay(displayNumber!, targetOp!, true);
+        verifyTheCounting(clicks, targetOp)
+        makeCounts(mainDisplay!.innerHTML) //Calcula 
         console.log(clicks);
     })
 })
 
 // ! diz explicitamente o valor não é nulo ou indefinido
 // Putting the number on the display
-function showsOnDisplay(displayNumber: string = '', targetInt: string = '') {
-    mainDisplay!.innerHTML += `${displayNumber}${targetInt}`;
-    
+function showsOnDisplay(displayNumber: string = '', targetInt: string = '', Op: boolean) {
+    if (Op) {
+        mainDisplay!.innerHTML += `${displayNumber}${targetInt}`;
+    } else {
+        mainDisplay!.innerHTML = `Result ${displayNumber}${targetInt}`;
+    }
 }
 
-function verifyTheCounting(clicks : number) { //Vê se a primeira operação já foi feita
+function verifyTheCounting(clicks : number, targetInt: string = '') { //Vê se a primeira operação já foi feita
     if (clicks <=  1) { 
         makeCounts(mainDisplay!.innerHTML)
-    }   else {
-        makeCounts(calcDisplay!.innerHTML)
+    } else {
+        showsOnDisplay(mainDisplay!.innerHTML, targetInt, false)
+        makeCounts(calcDisplay!.innerHTML, mainDisplay!.innerHTML)
     }
 }
 
 //Mostrando o resultado no display de cálculo
-function makeCounts(result: string) {
+function makeCounts(result: string, operator? : string) {
     console.log(result);
+
     let toMath = eval(result)
     let finalResult = toMath.toString()
     calcDisplay!.innerHTML = finalResult;
