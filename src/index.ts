@@ -4,6 +4,10 @@ const operator = document.querySelectorAll('[data-op]');
 const calcDisplay = document.getElementById('calc') as HTMLInputElement;
 const mainDisplay = document.getElementById('currentDisplay');
 
+const result = document.getElementById('result');
+
+// const buttons = document.querySelectorAll('button');
+
 let displayNumber = mainDisplay!.textContent;
 var clicks = 0;
 
@@ -11,11 +15,11 @@ var clicks = 0;
 numbers.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target as HTMLElement;
-        let targetText = target.textContent;
-        showsOnDisplay(displayNumber!, targetText!, true) //Manda a área e o conteúdo da tecla
+        let numeroTecla = target.textContent;
+        showsOnDisplay(displayNumber!, numeroTecla!, true) //Manda a área e o conteúdo da tecla
     
-        console.log(clicks);
-        verifyTheCounting(clicks)
+        verifyTheCounting(clicks);
+        console.log('Cliado:', clicks);
     })
 })
 
@@ -26,11 +30,18 @@ operator.forEach((op) => {
         clicks += 1;
         
         showsOnDisplay(displayNumber!, targetOp!, true);
-        verifyTheCounting(clicks, targetOp)
-        makeCounts(mainDisplay!.innerHTML) //Calcula 
+        verifyTheCounting(clicks);
         console.log(clicks);
     })
 })
+
+function verifyTheCounting(clicks : number, targetInt: string = '') { //Vê se a primeira operação já foi feita
+    if (clicks <=  1) { 
+        makeCounts(mainDisplay!.innerHTML)
+    } else {
+        showsOnDisplay(mainDisplay!.innerHTML, targetInt, false)
+    }
+}
 
 // ! diz explicitamente o valor não é nulo ou indefinido
 // Putting the number on the display
@@ -38,26 +49,18 @@ function showsOnDisplay(displayNumber: string = '', targetInt: string = '', Op: 
     if (Op) {
         mainDisplay!.innerHTML += `${displayNumber}${targetInt}`;
     } else {
-        mainDisplay!.innerHTML = `Result ${displayNumber}${targetInt}`;
-    }
-}
-
-function verifyTheCounting(clicks : number, targetInt: string = '') { //Vê se a primeira operação já foi feita
-    if (clicks <=  1) { 
-        makeCounts(mainDisplay!.innerHTML)
-    } else {
-        showsOnDisplay(mainDisplay!.innerHTML, targetInt, false)
-        makeCounts(calcDisplay!.innerHTML, mainDisplay!.innerHTML)
+        result!.innerHTML = 'R'
+        mainDisplay!.innerHTML = `${displayNumber}${targetInt}`;
     }
 }
 
 //Mostrando o resultado no display de cálculo
 function makeCounts(result: string, operator? : string) {
-    console.log(result);
+    console.log('Contou:',result);
+        let toMath = eval(result)
+        let finalResult = toMath.toString()
+        calcDisplay!.innerHTML = finalResult;
 
-    let toMath = eval(result)
-    let finalResult = toMath.toString()
-    calcDisplay!.innerHTML = finalResult;
 }
 
 //CERTO 2_________________________________________________________
@@ -65,8 +68,8 @@ function makeCounts(result: string, operator? : string) {
 // numbers.forEach((num) => {
 //     num.addEventListener('click', (e) => {
 //         let target = e.target as HTMLElement;
-//         var targetText = target.textContent;
-//         showsOnDisplay(displayNumber!, targetText!)
+//         var numeroTecla = target.textContent;
+//         showsOnDisplay(displayNumber!, numeroTecla!)
 //         makeCounts(mainDisplay!.innerHTML)
 //     })
 // })
