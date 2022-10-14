@@ -6,7 +6,6 @@ const mainDisplay = document.getElementById('currentDisplay');
 
 const result = document.getElementById('result');
 
-// const buttons = document.querySelectorAll('button');
 
 let displayNumber = mainDisplay!.textContent;
 var clicks = 0;
