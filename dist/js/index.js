@@ -9,16 +9,22 @@ botoes.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target;
         let numeroTecla = target.dataset.int;
-        console.log(numeroTecla);
-        mostraDisplay(numeroTecla);
+        mostraDisplayAtual(numeroTecla);
     });
 });
-const mostraDisplay = (numeros) => {
+const mostraDisplayAtual = (numeros) => {
     let escrito = contaDisplay.innerHTML += numeros;
     calcula(escrito);
     return escrito;
 };
 const calcula = (conta) => {
     let res = conta;
-    console.log('Res:', res);
+    let soN = res.slice(0, -1);
+    console.log(soN);
+    mostraDisplyResult(soN);
+};
+const mostraDisplyResult = (ultimaConta) => {
+    let result = eval(ultimaConta);
+    console.log(result);
+    resultadoDiplay.innerHTML = result;
 };

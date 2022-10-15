@@ -13,12 +13,11 @@ botoes.forEach((num) => {
         let target = e.target as HTMLElement;
         // let numeroTecla = target.textContent;
         let numeroTecla = target.dataset.int;
-        console.log(numeroTecla);
-        mostraDisplay(numeroTecla!)
+        mostraDisplayAtual(numeroTecla!)
     })
 })
 
-const mostraDisplay = (numeros: string) => {
+const mostraDisplayAtual = (numeros: string) => {
     let escrito = contaDisplay!.innerHTML += numeros
     calcula(escrito)
     return escrito
@@ -26,8 +25,15 @@ const mostraDisplay = (numeros: string) => {
 
 const calcula = (conta : string) => {
     let res = conta;
-    console.log('Res:', res);
+    let soN = res.slice(0, -1);
+    console.log(soN);
+    mostraDisplyResult(soN)
+}
 
+const mostraDisplyResult = (ultimaConta: string) => {
+    let result = eval(ultimaConta)
+    console.log(result);
+    resultadoDiplay!.innerHTML = result;
 }
 
 //_-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-_
