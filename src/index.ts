@@ -1,5 +1,5 @@
 const numeros = document.querySelectorAll('.buttons-n');
-const operadores = document.querySelectorAll('[data-op]');
+const operadores = document.querySelectorAll('.buttons-o');
 const botoes = document.querySelectorAll('button');
 
 const resultadoDiplay = document.getElementById('calc') as HTMLInputElement;
@@ -11,15 +11,20 @@ const RDisplay = document.getElementById('result');
 botoes.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target as HTMLElement;
-        // let numeroTecla = target.textContent;
         let numeroTecla = target.dataset.int;
         mostraDisplayAtual(numeroTecla!)
     })
 })
 
+operadores.forEach((op) => {
+    op.addEventListener('click', (e) => {
+        console.log('op');
+        calcula(contaDisplay!.innerHTML)
+    })
+})
+
 const mostraDisplayAtual = (numeros: string) => {
     let escrito = contaDisplay!.innerHTML += numeros
-    calcula(escrito)
     return escrito
 }
 

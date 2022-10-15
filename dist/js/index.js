@@ -1,6 +1,6 @@
 "use strict";
 const numeros = document.querySelectorAll('.buttons-n');
-const operadores = document.querySelectorAll('[data-op]');
+const operadores = document.querySelectorAll('.buttons-o');
 const botoes = document.querySelectorAll('button');
 const resultadoDiplay = document.getElementById('calc');
 const contaDisplay = document.getElementById('currentDisplay');
@@ -12,9 +12,14 @@ botoes.forEach((num) => {
         mostraDisplayAtual(numeroTecla);
     });
 });
+operadores.forEach((op) => {
+    op.addEventListener('click', (e) => {
+        console.log('op');
+        calcula(contaDisplay.innerHTML);
+    });
+});
 const mostraDisplayAtual = (numeros) => {
     let escrito = contaDisplay.innerHTML += numeros;
-    calcula(escrito);
     return escrito;
 };
 const calcula = (conta) => {
