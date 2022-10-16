@@ -2,7 +2,7 @@ const numeros = document.querySelectorAll('.buttons-n');
 const operadores = document.querySelectorAll('.buttons-o');
 const botoes = document.querySelectorAll('button');
 
-const resultadoDiplay = document.getElementById('calc') as HTMLInputElement;
+const resultadoDisplay = document.getElementById('calc') as HTMLInputElement;
 const contaDisplay = document.getElementById('currentDisplay');
 
 const RDisplay = document.getElementById('result'); 
@@ -23,6 +23,8 @@ operadores.forEach((op) => {
     })
 })
 
+//Functions_______________________________________
+var resultado;
 const mostraDisplayAtual = (numeros: string) => {
     let escrito = contaDisplay!.innerHTML += numeros
     return escrito
@@ -33,12 +35,18 @@ const calcula = (conta : string) => {
     let soN = res.slice(0, -1);
     console.log(soN);
     mostraDisplyResult(soN)
+
+    let op = contaDisplay!.innerHTML;
+    let opOnly = op.charAt(op.length -1)
+    console.log(opOnly);
+    contaDisplay!.innerHTML = opOnly;
 }
 
 const mostraDisplyResult = (ultimaConta: string) => {
     let result = eval(ultimaConta)
+    resultado = result;
     console.log(result);
-    resultadoDiplay!.innerHTML = result;
+    resultadoDisplay!.innerHTML = result;
 }
 
 //_-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-_

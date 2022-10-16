@@ -2,7 +2,7 @@
 const numeros = document.querySelectorAll('.buttons-n');
 const operadores = document.querySelectorAll('.buttons-o');
 const botoes = document.querySelectorAll('button');
-const resultadoDiplay = document.getElementById('calc');
+const resultadoDisplay = document.getElementById('calc');
 const contaDisplay = document.getElementById('currentDisplay');
 const RDisplay = document.getElementById('result');
 botoes.forEach((num) => {
@@ -18,6 +18,7 @@ operadores.forEach((op) => {
         calcula(contaDisplay.innerHTML);
     });
 });
+var resultado;
 const mostraDisplayAtual = (numeros) => {
     let escrito = contaDisplay.innerHTML += numeros;
     return escrito;
@@ -27,9 +28,14 @@ const calcula = (conta) => {
     let soN = res.slice(0, -1);
     console.log(soN);
     mostraDisplyResult(soN);
+    let op = contaDisplay.innerHTML;
+    let opOnly = op.charAt(op.length - 1);
+    console.log(opOnly);
+    contaDisplay.innerHTML = opOnly;
 };
 const mostraDisplyResult = (ultimaConta) => {
     let result = eval(ultimaConta);
+    resultado = result;
     console.log(result);
-    resultadoDiplay.innerHTML = result;
+    resultadoDisplay.innerHTML = result;
 };
