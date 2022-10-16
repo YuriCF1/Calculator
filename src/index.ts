@@ -30,16 +30,13 @@ const mostraDisplayAtual = (numeros: string) => {
     return escrito
 }
 
-const calcula = (conta : string) => {
-    let res = conta;
-    let soN = res.slice(0, -1);
-    console.log(soN);
-    mostraDisplyResult(soN)
-
-    let op = contaDisplay!.innerHTML;
-    let opOnly = op.charAt(op.length -1)
-    console.log(opOnly);
-    contaDisplay!.innerHTML = opOnly;
+const calcula = (contaDis : string) => {
+        let soNumeros = contaDis.slice(0, -1);
+        mostraDisplyResult(soNumeros)
+        
+        let operador = contaDisplay!.innerHTML;
+        let openasOperador = operador.charAt(operador.length -1)
+        contaDisplay!.innerHTML = openasOperador;
 }
 
 const mostraDisplyResult = (ultimaConta: string) => {

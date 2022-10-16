@@ -23,15 +23,12 @@ const mostraDisplayAtual = (numeros) => {
     let escrito = contaDisplay.innerHTML += numeros;
     return escrito;
 };
-const calcula = (conta) => {
-    let res = conta;
-    let soN = res.slice(0, -1);
-    console.log(soN);
-    mostraDisplyResult(soN);
-    let op = contaDisplay.innerHTML;
-    let opOnly = op.charAt(op.length - 1);
-    console.log(opOnly);
-    contaDisplay.innerHTML = opOnly;
+const calcula = (contaDis) => {
+    let soNumeros = contaDis.slice(0, -1);
+    mostraDisplyResult(soNumeros);
+    let operador = contaDisplay.innerHTML;
+    let openasOperador = operador.charAt(operador.length - 1);
+    contaDisplay.innerHTML = openasOperador;
 };
 const mostraDisplyResult = (ultimaConta) => {
     let result = eval(ultimaConta);
