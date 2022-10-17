@@ -14,7 +14,6 @@ botoes.forEach((num) => {
 });
 operadores.forEach((op) => {
     op.addEventListener('click', (e) => {
-        console.log('op');
         calcula(contaDisplay.innerHTML);
     });
 });
@@ -24,16 +23,22 @@ const mostraDisplayAtual = (numeros) => {
     return escrito;
 };
 const calcula = (contaDis) => {
-    let soNumeros = contaDis.slice(0, -1);
-    mostraDisplyResult(soNumeros);
+    let temResultado = contaDisplay.innerHTML != '';
+    let resultDisplay = contaDisplay.innerHTML;
+    if (temResultado) {
+        let soNumeros = contaDis.slice(0, -1);
+        console.log(soNumeros, resultDisplay);
+        mostraDisplyResult(soNumeros, resultDisplay);
+    }
     let operador = contaDisplay.innerHTML;
     let openasOperador = operador.charAt(operador.length - 1);
     contaDisplay.innerHTML = openasOperador;
     RDisplay.innerHTML = 'Result';
 };
-const mostraDisplyResult = (ultimaConta) => {
+const mostraDisplyResult = (ultimaConta, resultDisplay = '') => {
+    let juntandoOpercoes = ultimaConta.concat(resultDisplay);
+    console.log(juntandoOpercoes);
     let result = eval(ultimaConta);
     resultado = result;
-    console.log(result);
     resultadoDisplay.innerHTML = result;
 };
