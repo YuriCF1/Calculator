@@ -37,6 +37,9 @@ const calcula = (contaDis : string) => {
         let operador = contaDisplay!.innerHTML;
         let openasOperador = operador.charAt(operador.length -1)
         contaDisplay!.innerHTML = openasOperador;
+        
+        RDisplay!.innerHTML = 'Result';
+
 }
 
 const mostraDisplyResult = (ultimaConta: string) => {
