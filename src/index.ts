@@ -18,7 +18,6 @@ botoes.forEach((num) => {
 
 operadores.forEach((op) => {
     op.addEventListener('click', (e) => {
-        // console.log('op');
         calcula(contaDisplay!.innerHTML)
     })
 })
@@ -55,7 +54,7 @@ const mostraDisplyResult = (ultimaConta: string, resultDisplay : string = '') =>
     let juntandoOpercoes = ultimaConta.concat(resultDisplay)
     console.log(juntandoOpercoes);
 
-    let result = eval(ultimaConta)
+    let result = eval(ultimaConta) //Faz a conta, de fato
     resultado = result;
     resultadoDisplay!.innerHTML = result;
 }
