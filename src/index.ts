@@ -23,40 +23,44 @@ operadores.forEach((op) => {
 })
 
 //Functions_______________________________________
-var resultado;
+var resultado : number;
+
 const mostraDisplayAtual = (numeros: string) => {
     let escrito = contaDisplay!.innerHTML += numeros
     return escrito
 }
 
 const calcula = (contaDis : string) => {
-        let temResultado = contaDisplay!.innerHTML != '';
-        let resultDisplay = contaDisplay!.innerHTML;
+    // let soNumeros = contaDis.slice(0, -1);
+    mostraDisplyResult(contaDis)
 
-        if (temResultado) {
-            let soNumeros = contaDis.slice(0, -1);
-            console.log(soNumeros, resultDisplay); //Problema aqui
-            mostraDisplyResult(soNumeros, resultDisplay)
-        }
         
-        // let soNumeros = contaDis.slice(0, -1);
-        // mostraDisplyResult(soNumeros)
-        let operador = contaDisplay!.innerHTML;
-        let openasOperador = operador.charAt(operador.length -1) //Manda o último operador
-        contaDisplay!.innerHTML = openasOperador;
-        
-        RDisplay!.innerHTML = 'Result';
-
-        // console.log(temResultado);
+    // let operador = contaDisplay!.innerHTML;
+    // let openasOperador = operador.charAt(operador.length -1) //Manda o último operador
+    // contaDisplay!.innerHTML = openasOperador;
+    
+    // RDisplay!.innerHTML = 'Result';
 }
 
-const mostraDisplyResult = (ultimaConta: string, resultDisplay : string = '') => {
-    let juntandoOpercoes = ultimaConta.concat(resultDisplay)
-    console.log(juntandoOpercoes);
-
-    let result = eval(ultimaConta) //Faz a conta, de fato
-    resultado = result;
+const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string = '') => {
+    //Faz a conta
+    let soNumeros = numerosDisplay.slice(0, -1);
+    let result = eval(soNumeros);
     resultadoDisplay!.innerHTML = result;
+    
+    resultado = result;
+    console.log(resultado);
+    
+    //Manda o último operador
+    let operador = contaDisplay!.innerHTML;
+    let openasOperador = operador.charAt(operador.length -1) 
+    contaDisplay!.innerHTML = openasOperador;
+
+    //Concatena conta e resultado
+    let resultString = resultado.toString();
+    let contaTotal = resultString.concat(soNumeros)
+    console.log(contaTotal);
+
 }
 
 //_-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-_
@@ -126,7 +130,7 @@ const mostraDisplyResult = (ultimaConta: string, resultDisplay : string = '') =>
 // function makeCounts(result: string, operator? : string) {
 //     console.log('Contou:',result);
 //         let toMath = eval(result)
-//         let finalResult = toMath.toString()
+//         let finalResult = toMath.toString()()
 //         calcDisplay!.innerHTML = finalResult;
 
 // }
@@ -165,7 +169,7 @@ const mostraDisplyResult = (ultimaConta: string, resultDisplay : string = '') =>
 //     // let cleanValue = result.substring(0, result.length - 1);
 //     // console.log(cleanValue);
 //     let toMath = eval(result)
-//     let finalResult = toMath.toString()
+//     let finalResult = toMath.toString()()
 //     calcDisplay!.innerHTML = finalResult;
 
 // }
@@ -212,7 +216,7 @@ function showsOnDisplay(displayNumber: string = '', targetInt: string = '') {
 function showsCalcDisplay(result : string) {
     let toMath = eval(result)
     console.log(toMath);
-    let finalResult = toMath.toString()
+    let finalResult = toMath.toString()()
     calcDisplay!.innerHTML = finalResult;
 
 }

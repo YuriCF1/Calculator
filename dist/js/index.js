@@ -23,22 +23,18 @@ const mostraDisplayAtual = (numeros) => {
     return escrito;
 };
 const calcula = (contaDis) => {
-    let temResultado = contaDisplay.innerHTML != '';
-    let resultDisplay = contaDisplay.innerHTML;
-    if (temResultado) {
-        let soNumeros = contaDis.slice(0, -1);
-        console.log(soNumeros, resultDisplay);
-        mostraDisplyResult(soNumeros, resultDisplay);
-    }
+    mostraDisplyResult(contaDis);
+};
+const mostraDisplyResult = (numerosDisplay = '0', resultDisplay = '') => {
+    let soNumeros = numerosDisplay.slice(0, -1);
+    let result = eval(soNumeros);
+    resultadoDisplay.innerHTML = result;
+    resultado = result;
+    console.log(resultado);
     let operador = contaDisplay.innerHTML;
     let openasOperador = operador.charAt(operador.length - 1);
     contaDisplay.innerHTML = openasOperador;
-    RDisplay.innerHTML = 'Result';
-};
-const mostraDisplyResult = (ultimaConta, resultDisplay = '') => {
-    let juntandoOpercoes = ultimaConta.concat(resultDisplay);
-    console.log(juntandoOpercoes);
-    let result = eval(ultimaConta);
-    resultado = result;
-    resultadoDisplay.innerHTML = result;
+    let resultString = resultado.toString();
+    let contaTotal = resultString.concat(soNumeros);
+    console.log(contaTotal);
 };
