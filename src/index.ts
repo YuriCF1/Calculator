@@ -44,24 +44,30 @@ const calcula = (contaDis : string) => {
 
 const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string = '') => {
     //Faz a conta
+    let numerosOP = numerosDisplay;
+    console.log(numerosOP);
     let soNumeros = numerosDisplay.slice(0, -1);
     let result = eval(soNumeros);
-    resultadoDisplay!.innerHTML = result;
-    
-    resultado = result;
-    console.log(resultado);
     
     //Manda o último operador
     let operador = contaDisplay!.innerHTML;
     let openasOperador = operador.charAt(operador.length -1) 
     contaDisplay!.innerHTML = openasOperador;
+    
+    resultado = result;
+    console.log(resultado);
 
-    //Concatena conta e resultado
-    let resultString = resultado.toString();
-    let contaTotal = resultString.concat(soNumeros)
+    let resultString = resultado.toString() + openasOperador;
+    let contaTotal = resultString.concat(numerosOP)
     console.log(contaTotal);
 
-}
+    // let result = eval(contaTotal);
+    
+    resultadoDisplay!.innerHTML = result;
+}  
+
+// //Concatena conta e resultado
+// console.log(contaTotal);
 
 //_-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-__-_
 // const numbers = document.querySelectorAll('.buttons-n');

@@ -26,15 +26,17 @@ const calcula = (contaDis) => {
     mostraDisplyResult(contaDis);
 };
 const mostraDisplyResult = (numerosDisplay = '0', resultDisplay = '') => {
+    let numerosOP = numerosDisplay;
+    console.log(numerosOP);
     let soNumeros = numerosDisplay.slice(0, -1);
     let result = eval(soNumeros);
-    resultadoDisplay.innerHTML = result;
-    resultado = result;
-    console.log(resultado);
     let operador = contaDisplay.innerHTML;
     let openasOperador = operador.charAt(operador.length - 1);
     contaDisplay.innerHTML = openasOperador;
-    let resultString = resultado.toString();
-    let contaTotal = resultString.concat(soNumeros);
+    resultado = result;
+    console.log(resultado);
+    let resultString = resultado.toString() + openasOperador;
+    let contaTotal = resultString.concat(numerosOP);
     console.log(contaTotal);
+    resultadoDisplay.innerHTML = result;
 };
