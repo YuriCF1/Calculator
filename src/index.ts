@@ -34,7 +34,6 @@ const calcula = (contaDis : string) => {
     // let soNumeros = contaDis.slice(0, -1);
     mostraDisplyResult(contaDis)
 
-        
     // let operador = contaDisplay!.innerHTML;
     // let openasOperador = operador.charAt(operador.length -1) //Manda o último operador
     // contaDisplay!.innerHTML = openasOperador;
