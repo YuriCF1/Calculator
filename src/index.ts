@@ -56,6 +56,7 @@ const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string
     resultado = result;
     console.log(resultado);
 
+    //Lida com o resultado
     let resultString = resultado.toString() + openasOperador;
     let contaTotal = resultString.concat(numerosOP)
     console.log(contaTotal);
