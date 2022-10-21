@@ -30,6 +30,8 @@ const mostraDisplyResult = (numerosDisplay = '0', resultDisplay = '') => {
     console.log(numerosOP);
     let soNumeros = numerosDisplay.slice(0, -1);
     let result = eval(soNumeros);
+    let concatenando = soNumeros.concat(numerosOP);
+    console.log(concatenando);
     let operador = contaDisplay.innerHTML;
     let openasOperador = operador.charAt(operador.length - 1);
     contaDisplay.innerHTML = openasOperador;

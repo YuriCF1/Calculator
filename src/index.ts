@@ -46,7 +46,10 @@ const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string
     let numerosOP = numerosDisplay;
     console.log(numerosOP);
     let soNumeros = numerosDisplay.slice(0, -1);
-    let result = eval(soNumeros);
+    let result = eval(soNumeros); //Tenho que concatenar antes de calcular novamente
+    
+    let concatenando = soNumeros.concat(numerosOP)
+    console.log(concatenando);
     
     //Manda o último operador
     let operador = contaDisplay!.innerHTML;
