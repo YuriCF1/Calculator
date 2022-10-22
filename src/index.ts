@@ -43,7 +43,7 @@ const calcula = (contaDis : string) => {
 
 const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string = '') => {
 
-    // let numVisor = numerosDisplay;
+    // Making the sum 
     let soNumeros = numerosDisplay.slice(0, -1);
     let result = eval(soNumeros)
     console.log(result);
