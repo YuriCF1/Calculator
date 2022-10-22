@@ -26,19 +26,13 @@ const calcula = (contaDis) => {
     mostraDisplyResult(contaDis);
 };
 const mostraDisplyResult = (numerosDisplay = '0', resultDisplay = '') => {
-    let numerosOP = numerosDisplay;
-    console.log(numerosOP);
     let soNumeros = numerosDisplay.slice(0, -1);
     let result = eval(soNumeros);
-    let concatenando = soNumeros.concat(numerosOP);
+    console.log(result);
+    let openasOperador = numerosDisplay.charAt(numerosDisplay.length - 1);
+    console.log(openasOperador);
+    let string = result.toString();
+    let concatenando = string.concat(openasOperador, '12');
     console.log(concatenando);
-    let operador = contaDisplay.innerHTML;
-    let openasOperador = operador.charAt(operador.length - 1);
-    contaDisplay.innerHTML = openasOperador;
-    resultado = result;
-    console.log(resultado);
-    let resultString = resultado.toString() + openasOperador;
-    let contaTotal = resultString.concat(numerosOP);
-    console.log(contaTotal);
-    resultadoDisplay.innerHTML = result;
+    console.log(eval(concatenando));
 };

@@ -42,33 +42,56 @@ const calcula = (contaDis : string) => {
 }
 
 const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string = '') => {
-    //Faz a conta
-    let numerosOP = numerosDisplay;
-    console.log(numerosOP);
+
+    // let numVisor = numerosDisplay;
     let soNumeros = numerosDisplay.slice(0, -1);
-    let result = eval(soNumeros); //Tenho que concatenar antes de calcular novamente
-    
-    let concatenando = soNumeros.concat(numerosOP)
+    let result = eval(soNumeros)
+    console.log(result);
+
+    let openasOperador = numerosDisplay.charAt(numerosDisplay.length -1) 
+    console.log(openasOperador);
+
+    let string = result.toString();
+    let concatenando = string.concat(openasOperador, '12'); //Fazer outra função a partir daqui?
     console.log(concatenando);
     
-    //Manda o último operador
-    let operador = contaDisplay!.innerHTML;
-    let openasOperador = operador.charAt(operador.length -1) 
-    contaDisplay!.innerHTML = openasOperador;
-    
-    resultado = result;
-    console.log(resultado);
+    console.log(eval(concatenando));
 
-    //Lida com o resultado
-    let resultString = resultado.toString() + openasOperador;
-    let contaTotal = resultString.concat(numerosOP);
-    console.log(contaTotal);
-
-    // let result = eval(contaTotal);
-    
-    resultadoDisplay!.innerHTML = result;
+    // contaDisplay!.innerHTML = openasOperador;
+    // resultadoDisplay!.innerHTML = ;
 }  
+//_____________________________________________________________________________________
+// const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string = '') => {
+//     //Faz a conta
+//     let numerosOP = numerosDisplay;
+//     console.log(numerosOP);
+//     let soNumeros = numerosDisplay.slice(0, -1);
+//     let result = eval(soNumeros); //Tenho que concatenar antes de calcular novamente
+    
+//     let concatenando = soNumeros.concat(numerosOP)
+//     console.log(concatenando);
+    
+//     //Manda o último operador
+//     let operador = contaDisplay!.innerHTML;
+//     let openasOperador = operador.charAt(operador.length -1) 
+//     contaDisplay!.innerHTML = openasOperador;
+    
+//     resultado = result;
+//     console.log(resultado);
 
+//     //Lida com o resultado
+//     let resultString = resultado.toString() + openasOperador;
+//     let contaTotal = resultString.concat(numerosOP);
+//     console.log(contaTotal);
+
+//     // let result = eval(contaTotal);
+    
+//     resultadoDisplay!.innerHTML = result;
+// }  
+
+
+
+//_____________________________________________________________________________________
 // //Concatena conta e resultado
 // console.log(contaTotal);
 
