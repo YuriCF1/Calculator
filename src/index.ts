@@ -18,7 +18,7 @@ botoes.forEach((num) => {
 
 operadores.forEach((op) => {
     op.addEventListener('click', (e) => {
-        calcula(contaDisplay!.innerHTML)
+        calcula(contaDisplay!.innerHTML, resultadoDisplay!.innerHTML)
     })
 })
 
@@ -30,9 +30,9 @@ const mostraDisplayAtual = (numeros: string) => {
     return escrito
 }
 
-const calcula = (contaDis : string) => {
+const calcula = (contaDis : string, resultDis : string = '') => {
     // let soNumeros = contaDis.slice(0, -1);
-    mostraDisplyResult(contaDis)
+    mostraDisplyResult(contaDis, resultDis)
 
     // let operador = contaDisplay!.innerHTML;
     // let openasOperador = operador.charAt(operador.length -1) //Manda o último operador
@@ -42,24 +42,51 @@ const calcula = (contaDis : string) => {
 }
 
 const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string = '') => {
-
     // Making the sum 
     let soNumeros = numerosDisplay.slice(0, -1);
     let result = eval(soNumeros)
     console.log(result);
-
-    let openasOperador = numerosDisplay.charAt(numerosDisplay.length -1) 
-    console.log(openasOperador);
-
-    let string = result.toString();
-    let concatenando = string.concat(openasOperador, '12'); //Fazer outra função a partir daqui?
-    console.log(concatenando);
     
-    console.log(eval(concatenando));
+    //Último operador 
+    let openasOperador = numerosDisplay.charAt(numerosDisplay.length -1) 
+    // console.log(openasOperador);
+    contaDisplay!.innerHTML = openasOperador; 
+    
+    let string = result.toString();
+    
+    if (resultadoDisplay!.innerHTML != '') {
+        let concatenando = resultadoDisplay!.innerHTML.concat(soNumeros); //Fazer outra função a partir daqui?
+        console.log('result', concatenando);
+        let novoResultado = eval(concatenando).toString();
 
-    // contaDisplay!.innerHTML = openasOperador;
-    // resultadoDisplay!.innerHTML = ;
+        console.log(novoResultado);   
+
+        resultadoDisplay!.innerHTML = novoResultado;
+    } else {
+        resultadoDisplay!.innerHTML = result;
+
+    }   
+
 }
+
+
+// function recalc(numerosDisplay: string, result: number) {
+//     //Último operador 
+//     let openasOperador = numerosDisplay.charAt(numerosDisplay.length -1) 
+//     console.log(openasOperador);
+
+//     let string = result.toString();
+    
+//     let concatenando = string.concat(openasOperador, + 1); //Fazer outra função a partir daqui?
+//     console.log('result', concatenando);
+//     resultadoDisplay!.innerHTML = result;
+
+//     console.log(eval(concatenando));
+
+//     contaDisplay!.innerHTML = openasOperador;
+
+// }
+
 //_____________________________________________________________________________________
 // const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string = '') => {
 //     //Faz a conta

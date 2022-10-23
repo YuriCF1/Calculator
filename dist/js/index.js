@@ -14,7 +14,7 @@ botoes.forEach((num) => {
 });
 operadores.forEach((op) => {
     op.addEventListener('click', (e) => {
-        calcula(contaDisplay.innerHTML);
+        calcula(contaDisplay.innerHTML, resultadoDisplay.innerHTML);
     });
 });
 var resultado;
@@ -22,17 +22,24 @@ const mostraDisplayAtual = (numeros) => {
     let escrito = contaDisplay.innerHTML += numeros;
     return escrito;
 };
-const calcula = (contaDis) => {
-    mostraDisplyResult(contaDis);
+const calcula = (contaDis, resultDis = '') => {
+    mostraDisplyResult(contaDis, resultDis);
 };
 const mostraDisplyResult = (numerosDisplay = '0', resultDisplay = '') => {
     let soNumeros = numerosDisplay.slice(0, -1);
     let result = eval(soNumeros);
     console.log(result);
     let openasOperador = numerosDisplay.charAt(numerosDisplay.length - 1);
-    console.log(openasOperador);
+    contaDisplay.innerHTML = openasOperador;
     let string = result.toString();
-    let concatenando = string.concat(openasOperador, '12');
-    console.log(concatenando);
-    console.log(eval(concatenando));
+    if (resultadoDisplay.innerHTML != '') {
+        let concatenando = resultadoDisplay.innerHTML.concat(soNumeros);
+        console.log('result', concatenando);
+        let novoResultado = eval(concatenando).toString();
+        console.log(novoResultado);
+        resultadoDisplay.innerHTML = novoResultado;
+    }
+    else {
+        resultadoDisplay.innerHTML = result;
+    }
 };
