@@ -27,8 +27,8 @@ const calcula = (contaDis, resultDis = '') => {
 };
 const mostraDisplyResult = (numerosDisplay = '0', resultDisplay = '') => {
     let soNumeros = numerosDisplay.slice(0, -1);
-    let result = eval(soNumeros);
-    console.log(result);
+    console.log('so', soNumeros);
+    let result = eval(resultadoDisplay.innerHTML + soNumeros);
     let openasOperador = numerosDisplay.charAt(numerosDisplay.length - 1);
     contaDisplay.innerHTML = openasOperador;
     let string = result.toString();

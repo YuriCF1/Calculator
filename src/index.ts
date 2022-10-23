@@ -44,8 +44,8 @@ const calcula = (contaDis : string, resultDis : string = '') => {
 const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string = '') => {
     // Making the sum 
     let soNumeros = numerosDisplay.slice(0, -1);
-    let result = eval(soNumeros)
-    console.log(result);
+    console.log('so', soNumeros);
+    let result = eval(resultadoDisplay!.innerHTML + soNumeros);
     
     //Último operador 
     let openasOperador = numerosDisplay.charAt(numerosDisplay.length -1) 
