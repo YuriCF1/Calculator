@@ -59,7 +59,7 @@ const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string
 
     // contaDisplay!.innerHTML = openasOperador;
     // resultadoDisplay!.innerHTML = ;
-}  
+}
 //_____________________________________________________________________________________
 // const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string = '') => {
 //     //Faz a conta
@@ -245,13 +245,6 @@ function showsOnDisplay(displayNumber: string = '', targetInt: string = '') {
 
 }
 
-function showsCalcDisplay(result : string) {
-    let toMath = eval(result)
-    console.log(toMath);
-    let finalResult = toMath.toString()()
-    calcDisplay!.innerHTML = finalResult;
-
-}
 
 
 function Sums(currentValue: string) {
