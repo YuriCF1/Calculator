@@ -31,30 +31,21 @@ const mostraDisplayAtual = (numeros: string) => {
 }
 
 const calcula = (contaDis : string, resultDis : string = '') => {
-    // let soNumeros = contaDis.slice(0, -1);
+
     mostraDisplyResult(contaDis, resultDis)
 
-    // let operador = contaDisplay!.innerHTML;
-    // let openasOperador = operador.charAt(operador.length -1) //Manda o último operador
-    // contaDisplay!.innerHTML = openasOperador;
-    
-    // RDisplay!.innerHTML = 'Result';
 }
 
 const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string = '') => {
     // Making the sum 
     let soNumeros = numerosDisplay.slice(0, -1);
-    console.log('so', soNumeros);
     let result = eval(resultadoDisplay!.innerHTML + soNumeros);
     
     //Último operador 
     let openasOperador = numerosDisplay.charAt(numerosDisplay.length -1) 
-    // console.log(openasOperador);
     contaDisplay!.innerHTML = openasOperador; 
     
-    let string = result.toString();
-    
-    if (resultadoDisplay!.innerHTML != '') {
+    if (resultadoDisplay!.innerHTML != '') { 
         let concatenando = resultadoDisplay!.innerHTML.concat(soNumeros); //Fazer outra função a partir daqui?
         console.log('result', concatenando);
         let novoResultado = eval(concatenando).toString();
