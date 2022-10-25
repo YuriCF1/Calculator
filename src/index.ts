@@ -37,6 +37,7 @@ const calcula = (contaDis : string, resultDis : string = '') => {
 }
 
 const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string = '') => {
+    //Fazer restrição de mais de um operador
     // Making the sum 
     let soNumeros = numerosDisplay.slice(0, -1);
     let result = eval(resultadoDisplay!.innerHTML + soNumeros);
