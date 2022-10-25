@@ -31,43 +31,43 @@ const mostraDisplayAtual = (numeros: string) => {
 }
 
 const calcula = (contaDis : string, resultDis : string = '') => {
-
-    mostraDisplyResult(contaDis, resultDis)
+    mostraDisplyResult(contaDis, resultDis, true)
 
 }
 
-const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string = '') => {
+const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string = '', newOp : boolean) => {
     //Fazer restrição de mais de um operador
     // Making the sum 
-    let soNumeros = numerosDisplay.slice(0, -1);
-    let result = eval(resultadoDisplay!.innerHTML + soNumeros);
-    
-    //Último operador 
-    let openasOperador = numerosDisplay.charAt(numerosDisplay.length -1) 
-    contaDisplay!.innerHTML = openasOperador; 
-    
-    if (resultadoDisplay!.innerHTML != '') { 
-        let concatenando = resultadoDisplay!.innerHTML.concat(soNumeros); //Fazer outra função a partir daqui?
-        console.log('result', concatenando);
-        let novoResultado = eval(concatenando).toString();
 
-        console.log(novoResultado);   
-
-        resultadoDisplay!.innerHTML = novoResultado;
-    } else {
-        resultadoDisplay!.innerHTML = result;
-
-    }   
-
+    if (newOp) {
+        let soNumeros = numerosDisplay.slice(0, -1);
+        let result = eval(resultadoDisplay!.innerHTML + soNumeros);
+        
+        //Último operador 
+        let openasOperador = numerosDisplay.charAt(numerosDisplay.length -1) 
+        contaDisplay!.innerHTML = openasOperador; 
+        
+        if (resultadoDisplay!.innerHTML != '') { 
+            let concatenando = resultadoDisplay!.innerHTML.concat(soNumeros); //Fazer outra função a partir daqui?
+            console.log('result', concatenando);
+            let novoResultado = eval(concatenando).toString();
+            
+            console.log(novoResultado);   
+            
+            resultadoDisplay!.innerHTML = novoResultado;
+        } else {
+            resultadoDisplay!.innerHTML = result;
+        }   
+    }
 }
 
 
 // function recalc(numerosDisplay: string, result: number) {
-//     //Último operador 
-//     let openasOperador = numerosDisplay.charAt(numerosDisplay.length -1) 
-//     console.log(openasOperador);
-
-//     let string = result.toString();
+    //     //Último operador 
+    //     let openasOperador = numerosDisplay.charAt(numerosDisplay.length -1) 
+    //     console.log(openasOperador);
+    
+    //     let string = result.toString();
     
 //     let concatenando = string.concat(openasOperador, + 1); //Fazer outra função a partir daqui?
 //     console.log('result', concatenando);
