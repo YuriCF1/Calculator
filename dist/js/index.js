@@ -5,6 +5,12 @@ const botoes = document.querySelectorAll('button');
 const resultadoDisplay = document.getElementById('calc');
 const contaDisplay = document.getElementById('currentDisplay');
 const RDisplay = document.getElementById('result');
+var newOp = false;
+numeros.forEach((num) => {
+    newOp = false;
+    num.addEventListener('click', (e) => {
+    });
+});
 botoes.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target;
@@ -13,11 +19,13 @@ botoes.forEach((num) => {
     });
 });
 operadores.forEach((op) => {
+    newOp = true;
     op.addEventListener('click', (e) => {
         calcula(contaDisplay.innerHTML, resultadoDisplay.innerHTML);
     });
 });
 var resultado;
+var operations = ['/', 'per', 'root', '+', '-', '*'];
 const mostraDisplayAtual = (numeros) => {
     let escrito = contaDisplay.innerHTML += numeros;
     return escrito;
@@ -27,11 +35,9 @@ const calcula = (contaDis, resultDis = '') => {
 };
 const mostraDisplyResult = (numerosDisplay = '0', resultDisplay = '') => {
     let soNumeros = numerosDisplay.slice(0, -1);
-    console.log('so', soNumeros);
     let result = eval(resultadoDisplay.innerHTML + soNumeros);
     let openasOperador = numerosDisplay.charAt(numerosDisplay.length - 1);
     contaDisplay.innerHTML = openasOperador;
-    let string = result.toString();
     if (resultadoDisplay.innerHTML != '') {
         let concatenando = resultadoDisplay.innerHTML.concat(soNumeros);
         console.log('result', concatenando);

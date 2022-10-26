@@ -7,7 +7,14 @@ const contaDisplay = document.getElementById('currentDisplay');
 
 const RDisplay = document.getElementById('result'); 
 
+var newOp = false;
 //Adding the event of click
+numeros.forEach((num) => {
+    newOp = false;
+    num.addEventListener('click', (e) => {
+    })
+})
+
 botoes.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target as HTMLElement;
@@ -17,6 +24,7 @@ botoes.forEach((num) => {
 })
 
 operadores.forEach((op) => {
+    newOp = true;
     op.addEventListener('click', (e) => {
         calcula(contaDisplay!.innerHTML, resultadoDisplay!.innerHTML)
     })
@@ -24,41 +32,41 @@ operadores.forEach((op) => {
 
 //Functions_______________________________________
 var resultado : number;
+var operations = ['/', 'per', 'root', '+', '-', '*'];
 
+ 
 const mostraDisplayAtual = (numeros: string) => {
     let escrito = contaDisplay!.innerHTML += numeros
     return escrito
+
 }
 
 const calcula = (contaDis : string, resultDis : string = '') => {
-    mostraDisplyResult(contaDis, resultDis, true) //Testeing the function 
+    mostraDisplyResult(contaDis, resultDis) //Testeing the function 
 
 }
 
-const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string = '', newOp : boolean) => {
+const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string = '') => {
     //Fazer restrição de mais de um operador
     // Making the sum 
-
-    if (newOp) {
-        let soNumeros = numerosDisplay.slice(0, -1);
-        let result = eval(resultadoDisplay!.innerHTML + soNumeros);
+    let soNumeros = numerosDisplay.slice(0, -1);
+    let result = eval(resultadoDisplay!.innerHTML + soNumeros);
+    
+    //Último operador 
+    let openasOperador = numerosDisplay.charAt(numerosDisplay.length -1) 
+    contaDisplay!.innerHTML = openasOperador; 
+    
+    if (resultadoDisplay!.innerHTML != '') { 
+        let concatenando = resultadoDisplay!.innerHTML.concat(soNumeros); //Fazer outra função a partir daqui?
+        console.log('result', concatenando);
+        let novoResultado = eval(concatenando).toString();
         
-        //Último operador 
-        let openasOperador = numerosDisplay.charAt(numerosDisplay.length -1) 
-        contaDisplay!.innerHTML = openasOperador; 
+        console.log(novoResultado);
         
-        if (resultadoDisplay!.innerHTML != '') { 
-            let concatenando = resultadoDisplay!.innerHTML.concat(soNumeros); //Fazer outra função a partir daqui?
-            console.log('result', concatenando);
-            let novoResultado = eval(concatenando).toString();
-            
-            console.log(novoResultado);   
-            
-            resultadoDisplay!.innerHTML = novoResultado;
-        } else {
-            resultadoDisplay!.innerHTML = result;
-        }   
-    }
+        resultadoDisplay!.innerHTML = novoResultado;
+    } else {
+        resultadoDisplay!.innerHTML = result;
+    }   
 }
 
 
