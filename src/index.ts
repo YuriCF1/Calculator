@@ -31,7 +31,7 @@ const mostraDisplayAtual = (numeros: string) => {
 }
 
 const calcula = (contaDis : string, resultDis : string = '') => {
-    mostraDisplyResult(contaDis, resultDis, true)
+    mostraDisplyResult(contaDis, resultDis, true) //Testeing the function 
 
 }
 
