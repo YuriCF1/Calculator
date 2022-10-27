@@ -7,6 +7,8 @@ const contaDisplay = document.getElementById('currentDisplay');
 
 const RDisplay = document.getElementById('result'); 
 
+//Passar o operado para a função digitar, e se a classe for buttons-o, fazer o display mostrar só ela
+
 var newOp = false;
 //Adding the event of click
 numeros.forEach((num) => {
@@ -32,13 +34,11 @@ operadores.forEach((op) => {
 
 //Functions_______________________________________
 var resultado : number;
-var operations = ['/', 'per', 'root', '+', '-', '*'];
 
- 
+
 const mostraDisplayAtual = (numeros: string) => {
     let escrito = contaDisplay!.innerHTML += numeros
     return escrito
-
 }
 
 const calcula = (contaDis : string, resultDis : string = '') => {
@@ -49,24 +49,24 @@ const calcula = (contaDis : string, resultDis : string = '') => {
 const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string = '') => {
     //Fazer restrição de mais de um operador
     // Making the sum 
-    let soNumeros = numerosDisplay.slice(0, -1);
-    let result = eval(resultadoDisplay!.innerHTML + soNumeros);
-    
-    //Último operador 
-    let openasOperador = numerosDisplay.charAt(numerosDisplay.length -1) 
-    contaDisplay!.innerHTML = openasOperador; 
-    
-    if (resultadoDisplay!.innerHTML != '') { 
-        let concatenando = resultadoDisplay!.innerHTML.concat(soNumeros); //Fazer outra função a partir daqui?
-        console.log('result', concatenando);
-        let novoResultado = eval(concatenando).toString();
+        let soNumeros = numerosDisplay.slice(0, -1);
+        let result = eval(resultadoDisplay!.innerHTML + soNumeros);
         
-        console.log(novoResultado);
-        
-        resultadoDisplay!.innerHTML = novoResultado;
+        //Último operador 
+        let openasOperador = numerosDisplay.charAt(numerosDisplay.length -1) 
+        contaDisplay!.innerHTML = openasOperador; 
+    
+        if (resultadoDisplay!.innerHTML != '') { //Manda o resultado na segunda conta
+            let concatenando = resultadoDisplay!.innerHTML.concat(soNumeros);
+            console.log('result', concatenando);
+            let novoResultado = eval(concatenando).toString();
+            
+            console.log(novoResultado);
+            
+            resultadoDisplay!.innerHTML = novoResultado;
     } else {
-        resultadoDisplay!.innerHTML = result;
-    }   
+        resultadoDisplay!.innerHTML = result; //Manda o resultado na primeira conta
+    }
 }
 
 

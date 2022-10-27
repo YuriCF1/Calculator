@@ -25,7 +25,6 @@ operadores.forEach((op) => {
     });
 });
 var resultado;
-var operations = ['/', 'per', 'root', '+', '-', '*'];
 const mostraDisplayAtual = (numeros) => {
     let escrito = contaDisplay.innerHTML += numeros;
     return escrito;
