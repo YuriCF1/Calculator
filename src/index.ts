@@ -21,7 +21,10 @@ botoes.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target as HTMLElement;
         let numeroTecla = target.dataset.int;
-        mostraDisplayAtual(numeroTecla!)
+        
+        let classN = target.classList[2];
+        console.log(classN);
+        mostraDisplayAtual(numeroTecla!, classN)
     })
 })
 
@@ -35,13 +38,18 @@ operadores.forEach((op) => {
 //Functions_______________________________________
 var resultado : number;
 
-
-const mostraDisplayAtual = (numeros: string) => {
-    let escrito = contaDisplay!.innerHTML += numeros
-    return escrito
+const mostraDisplayAtual = (numeros: string, op: string) => {
+    if(op === 'buttons-o') {
+        let opDado = contaDisplay!.innerHTML = numeros
+        return opDado
+    } else {
+        let escrito = contaDisplay!.innerHTML += numeros
+        return escrito
+    }
 }
 
 const calcula = (contaDis : string, resultDis : string = '') => {
+    console.log(contaDis);
     mostraDisplyResult(contaDis, resultDis) //Testeing the function 
 
 }
