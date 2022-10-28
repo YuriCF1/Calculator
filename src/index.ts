@@ -9,10 +9,8 @@ const RDisplay = document.getElementById('result');
 
 //Passar o operado para a função digitar, e se a classe for buttons-o, fazer o display mostrar só ela
 
-var newOp = false;
 //Adding the event of click
 numeros.forEach((num) => {
-    newOp = false;
     num.addEventListener('click', (e) => {
     })
 })
@@ -29,41 +27,35 @@ botoes.forEach((num) => {
 })
 
 operadores.forEach((op) => {
-    newOp = true;
     op.addEventListener('click', (e) => {
-        calcula(contaDisplay!.innerHTML, resultadoDisplay!.innerHTML)
+        calcula(contaDisplay!.innerHTML);
+    
     })
 })
 
 //Functions_______________________________________
 var resultado : number;
 
-const mostraDisplayAtual = (numeros: string, op: string) => {
-    if(op === 'buttons-o') {
-        let opDado = contaDisplay!.innerHTML = numeros
-        return opDado
-    } else {
-        let escrito = contaDisplay!.innerHTML += numeros
-        return escrito
-    }
+const mostraDisplayAtual = (numeros: string, op?: string) => {
+    contaDisplay!.innerHTML += numeros;
 }
 
-const calcula = (contaDis : string, resultDis : string = '') => {
-    console.log(contaDis);
-    mostraDisplyResult(contaDis, resultDis) //Testeing the function 
+const calcula = (contaDis : string) => {
+    mostraDisplyResult(contaDis) //Testeing the function 
 
 }
 
-const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string = '') => {
-    //Fazer restrição de mais de um operador
-    // Making the sum 
+const mostraDisplyResult = (numerosDisplay: string = '0') => {
+
+    if (contaDisplay!.innerHTML.length >= 1) {
+        // Making the sum 
         let soNumeros = numerosDisplay.slice(0, -1);
         let result = eval(resultadoDisplay!.innerHTML + soNumeros);
         
         //Último operador 
         let openasOperador = numerosDisplay.charAt(numerosDisplay.length -1) 
         contaDisplay!.innerHTML = openasOperador; 
-    
+        
         if (resultadoDisplay!.innerHTML != '') { //Manda o resultado na segunda conta
             let concatenando = resultadoDisplay!.innerHTML.concat(soNumeros);
             console.log('result', concatenando);
@@ -72,8 +64,11 @@ const mostraDisplyResult = (numerosDisplay: string = '0', resultDisplay : string
             console.log(novoResultado);
             
             resultadoDisplay!.innerHTML = novoResultado;
+        } else {
+            resultadoDisplay!.innerHTML = result; //Manda o resultado na primeira conta
+        }
     } else {
-        resultadoDisplay!.innerHTML = result; //Manda o resultado na primeira conta
+        contaDisplay!.innerHTML = numerosDisplay
     }
 }
 

@@ -5,9 +5,7 @@ const botoes = document.querySelectorAll('button');
 const resultadoDisplay = document.getElementById('calc');
 const contaDisplay = document.getElementById('currentDisplay');
 const RDisplay = document.getElementById('result');
-var newOp = false;
 numeros.forEach((num) => {
-    newOp = false;
     num.addEventListener('click', (e) => {
     });
 });
@@ -21,39 +19,35 @@ botoes.forEach((num) => {
     });
 });
 operadores.forEach((op) => {
-    newOp = true;
     op.addEventListener('click', (e) => {
-        calcula(contaDisplay.innerHTML, resultadoDisplay.innerHTML);
+        calcula(contaDisplay.innerHTML);
     });
 });
 var resultado;
 const mostraDisplayAtual = (numeros, op) => {
-    if (op === 'buttons-o') {
-        let opDado = contaDisplay.innerHTML = numeros;
-        return opDado;
+    contaDisplay.innerHTML += numeros;
+};
+const calcula = (contaDis) => {
+    mostraDisplyResult(contaDis);
+};
+const mostraDisplyResult = (numerosDisplay = '0') => {
+    if (contaDisplay.innerHTML.length >= 1) {
+        let soNumeros = numerosDisplay.slice(0, -1);
+        let result = eval(resultadoDisplay.innerHTML + soNumeros);
+        let openasOperador = numerosDisplay.charAt(numerosDisplay.length - 1);
+        contaDisplay.innerHTML = openasOperador;
+        if (resultadoDisplay.innerHTML != '') {
+            let concatenando = resultadoDisplay.innerHTML.concat(soNumeros);
+            console.log('result', concatenando);
+            let novoResultado = eval(concatenando).toString();
+            console.log(novoResultado);
+            resultadoDisplay.innerHTML = novoResultado;
+        }
+        else {
+            resultadoDisplay.innerHTML = result;
+        }
     }
     else {
-        let escrito = contaDisplay.innerHTML += numeros;
-        return escrito;
-    }
-};
-const calcula = (contaDis, resultDis = '') => {
-    console.log(contaDis);
-    mostraDisplyResult(contaDis, resultDis);
-};
-const mostraDisplyResult = (numerosDisplay = '0', resultDisplay = '') => {
-    let soNumeros = numerosDisplay.slice(0, -1);
-    let result = eval(resultadoDisplay.innerHTML + soNumeros);
-    let openasOperador = numerosDisplay.charAt(numerosDisplay.length - 1);
-    contaDisplay.innerHTML = openasOperador;
-    if (resultadoDisplay.innerHTML != '') {
-        let concatenando = resultadoDisplay.innerHTML.concat(soNumeros);
-        console.log('result', concatenando);
-        let novoResultado = eval(concatenando).toString();
-        console.log(novoResultado);
-        resultadoDisplay.innerHTML = novoResultado;
-    }
-    else {
-        resultadoDisplay.innerHTML = result;
+        contaDisplay.innerHTML = numerosDisplay;
     }
 };
