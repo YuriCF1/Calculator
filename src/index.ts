@@ -10,8 +10,11 @@ const RDisplay = document.getElementById('result');
 //Passar o operado para a função digitar, e se a classe for buttons-o, fazer o display mostrar só ela
 
 //Adding the event of click
+
+let newNumber = false;
 numeros.forEach((num) => {
     num.addEventListener('click', (e) => {
+        newNumber = true;
     })
 })
 
@@ -22,12 +25,18 @@ botoes.forEach((num) => {
         
         let classN = target.classList[2];
         console.log(classN);
+
+        console.log(newNumber);
         mostraDisplayAtual(numeroTecla!, classN)
+
+        console.log(contaDisplay!.innerHTML.length);
     })
 })
 
 operadores.forEach((op) => {
     op.addEventListener('click', (e) => {
+        newNumber = false;
+        console.log(newNumber);
         calcula(contaDisplay!.innerHTML);
     
     })
@@ -37,7 +46,12 @@ operadores.forEach((op) => {
 var resultado : number;
 
 const mostraDisplayAtual = (numeros: string, op?: string) => {
-    contaDisplay!.innerHTML += numeros;
+    if (newNumber) {
+        contaDisplay!.innerHTML += numeros;
+
+    } else {
+        contaDisplay!.innerHTML = numeros;
+    }
 }
 
 const calcula = (contaDis : string) => {
@@ -46,8 +60,8 @@ const calcula = (contaDis : string) => {
 }
 
 const mostraDisplyResult = (numerosDisplay: string = '0') => {
-
-    if (contaDisplay!.innerHTML.length >= 1) {
+console.log(contaDisplay!.innerHTML.length);
+    if (contaDisplay!.innerHTML.length >= 2) {
         // Making the sum 
         let soNumeros = numerosDisplay.slice(0, -1);
         let result = eval(resultadoDisplay!.innerHTML + soNumeros);
