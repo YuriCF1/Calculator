@@ -1,9 +1,17 @@
 .operations {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     width: 20rem;
     height: 100%;
+}
+
+.operations-math {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 10rem;
+    height: 100%; 
 }
 
 .buttons-o {
@@ -11,7 +19,7 @@
     text-align: center;
     width: 33.33%;
     /* height: 35%; */
-    height: 52.5%;
+    height: 26%;
     padding: 20% 0;
 
     box-sizing: border-box;
