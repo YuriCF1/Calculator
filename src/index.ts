@@ -1,6 +1,7 @@
 const numeros = document.querySelectorAll('.buttons-n');
 const operadores = document.querySelectorAll('.buttons-o');
 const botoes = document.querySelectorAll('button');
+const apaga = document.getElementById('delete');
 
 const resultadoDisplay = document.getElementById('calc') as HTMLInputElement;
 const contaDisplay = document.getElementById('currentDisplay');
@@ -86,7 +87,10 @@ console.log(contaDisplay!.innerHTML.length);
     }
 }
 
-
+apaga?.addEventListener('click', (e) => {
+    contaDisplay!.innerHTML = ''
+    resultadoDisplay!.innerHTML = '';    
+})
 // function recalc(numerosDisplay: string, result: number) {
     //     //Último operador 
     //     let openasOperador = numerosDisplay.charAt(numerosDisplay.length -1) 
