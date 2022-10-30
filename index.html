@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="assets/CSS/operations-style.css" />
 
     <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
     <script
       src="https://kit.fontawesome.com/9eaf1d90d0.js"
       crossorigin="anonymous"
@@ -34,7 +37,7 @@
           <span class="display-numbers--current" id="currentDisplay"></span>
         </div>
       </div>
-        <div class="pads-container">
+      <div class="pads-container">
         <div class="">
           <!-- ul>li.buttons{textValue $}*5 -->
           <ul class="numbers">
@@ -49,26 +52,26 @@
             <button class="buttons-n" data-int="1">1</button>
             <button class="buttons-n" data-int="0">0</button>
             <button class="buttons-n" data-int=".">.</button>
-            <button class="buttons-n" data-int="=">=</button>
+            <button id="equal" class="buttons-n" data-int="=">=</button>
           </ul>
         </div>
-        <div>
-          <ul class="operations">
+        <div class="pad">
+          <section class="operations">
             <!-- <button class="fa-solid fa-divide buttons-o" data-int="">Limpar</button>
             <button class="fa-solid fa-divide buttons-o" data-int="">Apagar</button> -->    
+            <div class="operations-edit">
+              <button class="buttons-c" data-int="delete">CE</button>
+              <button class="buttons-c" data-int="delete">C</button>
+            </div>
             <div class="operations-math">
               <button class="fa-solid fa-divide buttons-o" data-int="/"></button>
               <button class="fa-solid fa-percent buttons-o" data-int="per"></button>
               <button class="fa-solid fa-square-root-variable buttons-o" data-int="root"></button>
-              <button class="fa-solid fa-plus buttons-o" data-int="+"></button>
-              <button class="fa-solid fa-minus buttons-o" data-int="-"></button>
               <button class="fa-solid fa-xmark buttons-o" data-int="*"></button>
+              <button class="fa-solid fa-minus buttons-o" data-int="-"></button>
+              <button class="fa-solid fa-plus buttons-o" data-int="+"></button>
             </div>
-            <div>
-              <button class="fa-solid fa-divide buttons-c" data-int="delete">A.C</button>
-              <button class="fa-solid fa-divide buttons-c" data-int="delete">Deletar</button>
-            </div>
-          </ul>
+          </section>
         </div>
       </div>
     </section>
