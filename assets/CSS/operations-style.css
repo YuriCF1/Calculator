@@ -23,7 +23,8 @@ body {
     flex-wrap: wrap;
 }
 
-.buttons-c {
+
+.buttons-c, .buttons-e {
     width: 50%;
     height: 5rem;
 

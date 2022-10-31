@@ -16,6 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    
     <script
       src="https://kit.fontawesome.com/9eaf1d90d0.js"
       crossorigin="anonymous"
@@ -41,35 +42,33 @@
         <div class="">
           <!-- ul>li.buttons{textValue $}*5 -->
           <ul class="numbers">
-            <button class="buttons-n" data-int="9">9</button>
-            <button class="buttons-n" data-int="8">8</button>
-            <button class="buttons-n" data-int="7">7</button>
-            <button class="buttons-n" data-int="6">6</button>
-            <button class="buttons-n" data-int="5">5</button>
-            <button class="buttons-n" data-int="4">4</button>
-            <button class="buttons-n" data-int="3">3</button>
-            <button class="buttons-n" data-int="2">2</button>
-            <button class="buttons-n" data-int="1">1</button>
-            <button class="buttons-n" data-int="0">0</button>
-            <button class="buttons-n" data-int=".">.</button>
-            <button id="equal" class="buttons-n" data-int="=">=</button>
+            <button class="button buttons-n" data-int="9">9</button>
+            <button class="button buttons-n" data-int="8">8</button>
+            <button class="button buttons-n" data-int="7">7</button>
+            <button class="button buttons-n" data-int="6">6</button>
+            <button class="button buttons-n" data-int="5">5</button>
+            <button class="button buttons-n" data-int="4">4</button>
+            <button class="button buttons-n" data-int="3">3</button>
+            <button class="button buttons-n" data-int="2">2</button>
+            <button class="button buttons-n" data-int="1">1</button>
+            <button class="button buttons-n" data-int="0">0</button>
+            <button class="button buttons-n" data-int=".">.</button>
+            <button id="equal" class="button buttons-n" data-int="=">=</button>
           </ul>
         </div>
         <div class="pad">
-          <section class="operations">
-            <!-- <button class="fa-solid fa-divide buttons-o" data-int="">Limpar</button>
-            <button class="fa-solid fa-divide buttons-o" data-int="">Apagar</button> -->    
+          <section class="operations"> 
             <div class="operations-edit">
-              <button class="buttons-c" data-int="delete-all">CE</button>
-              <button class="buttons-c" data-int="delete">C</button>
+              <button class="button buttons-e" data-int="delete-all">C</button>
+              <button id="delete" class="buttons-e fa-solid fa-arrow-left-long"></button>
             </div>
             <div class="operations-math">
-              <button class="fa-solid fa-divide buttons-o" data-int="/"></button>
-              <button class="fa-solid fa-percent buttons-o" data-int="per"></button>
-              <button class="fa-solid fa-square-root-variable buttons-o" data-int="root"></button>
-              <button class="fa-solid fa-xmark buttons-o" data-int="*"></button>
-              <button class="fa-solid fa-minus buttons-o" data-int="-"></button>
-              <button class="fa-solid fa-plus buttons-o" data-int="+"></button>
+              <button class="fa-solid fa-divide button buttons-o" data-int="/"></button>
+              <button class="fa-solid fa-percent button buttons-o" data-int="per"></button>
+              <button class="fa-solid fa-square-root-variable button buttons-o" data-int="root"></button>
+              <button class="fa-solid fa-xmark button buttons-o" data-int="*"></button>
+              <button class="fa-solid fa-minus button buttons-o" data-int="-"></button>
+              <button class="fa-solid fa-plus button buttons-o" data-int="+"></button>
             </div>
           </section>
         </div>

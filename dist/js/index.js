@@ -1,7 +1,9 @@
 "use strict";
 const numeros = document.querySelectorAll('.buttons-n');
 const operadores = document.querySelectorAll('.buttons-o');
-const botoes = document.querySelectorAll('button');
+const botoes = document.querySelectorAll('.button');
+const deleteAll = document.querySelector('[data-int="delete-all"]');
+const deleteOne = document.getElementById('delete');
 const resultadoDisplay = document.getElementById('calc');
 const contaDisplay = document.getElementById('currentDisplay');
 const RDisplay = document.getElementById('result');
@@ -63,3 +65,13 @@ const mostraDisplyResult = (numerosDisplay = '0') => {
         contaDisplay.innerHTML = numerosDisplay;
     }
 };
+deleteAll === null || deleteAll === void 0 ? void 0 : deleteAll.addEventListener('click', (e) => {
+    console.log('delete');
+    contaDisplay.innerHTML = '';
+    resultadoDisplay.innerHTML = '';
+});
+deleteOne === null || deleteOne === void 0 ? void 0 : deleteOne.addEventListener('click', (e) => {
+    let a = contaDisplay.innerHTML;
+    let b = a.substring(0, a.length - 1);
+    contaDisplay.innerHTML = b;
+});

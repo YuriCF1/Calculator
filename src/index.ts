@@ -1,7 +1,10 @@
 const numeros = document.querySelectorAll('.buttons-n');
 const operadores = document.querySelectorAll('.buttons-o');
-const botoes = document.querySelectorAll('button');
-const apaga = document.getElementById('delete');
+// const botoes = document.querySelectorAll('button');
+const botoes = document.querySelectorAll('.button');
+
+const deleteAll = document.querySelector('[data-int="delete-all"]');
+const deleteOne = document.getElementById('delete');
 
 const resultadoDisplay = document.getElementById('calc') as HTMLInputElement;
 const contaDisplay = document.getElementById('currentDisplay');
@@ -86,7 +89,15 @@ console.log(contaDisplay!.innerHTML.length);
     }
 }
 
-apaga?.addEventListener('click', (e) => {
-    contaDisplay!.innerHTML = '0'
-    resultadoDisplay!.innerHTML = '';    
+deleteAll?.addEventListener('click', (e) => {
+    console.log('delete');
+    contaDisplay!.innerHTML = ''
+    resultadoDisplay!.innerHTML = '';
+
+})
+
+deleteOne?.addEventListener('click', (e) => {
+    let a = contaDisplay!.innerHTML;
+    let b = a.substring(0, a.length - 1);
+    contaDisplay!.innerHTML  = b;
 })
