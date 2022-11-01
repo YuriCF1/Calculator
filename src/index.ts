@@ -11,6 +11,11 @@ const contaDisplay = document.getElementById('currentDisplay');
 
 const RDisplay = document.getElementById('result'); 
 
+let display1 = contaDisplay!.innerHTML;
+document.getElementById('equal')!.onclick = () => {
+    contaDisplay!.innerHTML = ''
+}
+
 //Passar o operado para a função digitar, e se a classe for buttons-o, fazer o display mostrar só ele
 //Adding the event of click
 
@@ -98,6 +103,6 @@ deleteAll?.addEventListener('click', (e) => {
 
 deleteOne?.addEventListener('click', (e) => {
     let allCounting = contaDisplay!.innerHTML;
-    let lastCaracter = allCounting.substring(0, a.length - 1);
+    let lastCaracter = allCounting.substring(0, allCounting.length - 1);
     contaDisplay!.innerHTML  = lastCaracter;
 })

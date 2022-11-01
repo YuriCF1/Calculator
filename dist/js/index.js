@@ -7,6 +7,10 @@ const deleteOne = document.getElementById('delete');
 const resultadoDisplay = document.getElementById('calc');
 const contaDisplay = document.getElementById('currentDisplay');
 const RDisplay = document.getElementById('result');
+let display1 = contaDisplay.innerHTML;
+document.getElementById('equal').onclick = () => {
+    contaDisplay.innerHTML = '';
+};
 let newNumber = false;
 numeros.forEach((num) => {
     num.addEventListener('click', (e) => {
@@ -71,7 +75,7 @@ deleteAll === null || deleteAll === void 0 ? void 0 : deleteAll.addEventListener
     resultadoDisplay.innerHTML = '';
 });
 deleteOne === null || deleteOne === void 0 ? void 0 : deleteOne.addEventListener('click', (e) => {
-    let a = contaDisplay.innerHTML;
-    let b = a.substring(0, a.length - 1);
-    contaDisplay.innerHTML = b;
+    let allCounting = contaDisplay.innerHTML;
+    let lastCaracter = allCounting.substring(0, allCounting.length - 1);
+    contaDisplay.innerHTML = lastCaracter;
 });
