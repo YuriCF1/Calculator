@@ -97,7 +97,7 @@ deleteAll?.addEventListener('click', (e) => {
 })
 
 deleteOne?.addEventListener('click', (e) => {
-    let a = contaDisplay!.innerHTML;
-    let b = a.substring(0, a.length - 1);
-    contaDisplay!.innerHTML  = b;
+    let allCounting = contaDisplay!.innerHTML;
+    let lastCaracter = allCounting.substring(0, a.length - 1);
+    contaDisplay!.innerHTML  = lastCaracter;
 })
