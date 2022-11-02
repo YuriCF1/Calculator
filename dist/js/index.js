@@ -8,9 +8,6 @@ const resultadoDisplay = document.getElementById('calc');
 const contaDisplay = document.getElementById('currentDisplay');
 const RDisplay = document.getElementById('result');
 let display1 = contaDisplay.innerHTML;
-document.getElementById('equal').onclick = () => {
-    contaDisplay.innerHTML = '';
-};
 let newNumber = false;
 numeros.forEach((num) => {
     num.addEventListener('click', (e) => {
@@ -37,6 +34,7 @@ operadores.forEach((op) => {
 });
 var resultado;
 const mostraDisplayAtual = (numeros, op) => {
+    console.log(numeros);
     if (newNumber) {
         contaDisplay.innerHTML += numeros;
     }
@@ -45,6 +43,7 @@ const mostraDisplayAtual = (numeros, op) => {
     }
 };
 const calcula = (contaDis) => {
+    console.log(contaDis);
     mostraDisplyResult(contaDis);
 };
 const mostraDisplyResult = (numerosDisplay = '0') => {
@@ -79,3 +78,17 @@ deleteOne === null || deleteOne === void 0 ? void 0 : deleteOne.addEventListener
     let lastCaracter = allCounting.substring(0, allCounting.length - 1);
     contaDisplay.innerHTML = lastCaracter;
 });
+document.getElementById('equal').onclick = () => {
+    let reiniciado = true;
+    calcula(contaDisplay.innerHTML);
+    contaDisplay.innerHTML = '';
+    numeros.forEach((num) => {
+        num.addEventListener('click', (e) => {
+            newNumber = true;
+            if (reiniciado) {
+                resultadoDisplay.innerHTML = '';
+                reiniciado = false;
+            }
+        });
+    });
+};

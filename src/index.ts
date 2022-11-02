@@ -12,9 +12,7 @@ const contaDisplay = document.getElementById('currentDisplay');
 const RDisplay = document.getElementById('result'); 
 
 let display1 = contaDisplay!.innerHTML;
-document.getElementById('equal')!.onclick = () => {
-    contaDisplay!.innerHTML = ''
-}
+
 
 //Passar o operado para a função digitar, e se a classe for buttons-o, fazer o display mostrar só ele
 //Adding the event of click
@@ -54,15 +52,17 @@ operadores.forEach((op) => {
 var resultado : number;
 
 const mostraDisplayAtual = (numeros: string, op?: string) => {
+    console.log(numeros);
     if (newNumber) {
         contaDisplay!.innerHTML += numeros;
-
+  
     } else {
         contaDisplay!.innerHTML = numeros;
     }
 }
 
-const calcula = (contaDis : string) => {
+const calcula = (contaDis : string) => { 
+    console.log(contaDis);
     mostraDisplyResult(contaDis) //Testeing the function 
 
 }
@@ -106,3 +106,20 @@ deleteOne?.addEventListener('click', (e) => {
     let lastCaracter = allCounting.substring(0, allCounting.length - 1);
     contaDisplay!.innerHTML  = lastCaracter;
 })
+
+document.getElementById('equal')!.onclick = () => {
+    let reiniciado = true;
+
+    calcula(contaDisplay!.innerHTML);
+    contaDisplay!.innerHTML = ''
+
+    numeros.forEach((num) => {
+        num.addEventListener('click', (e) => {
+            newNumber = true;
+            if (reiniciado) {
+                resultadoDisplay!.innerHTML = '';
+                reiniciado = false;
+            }
+        })
+    })
+}
