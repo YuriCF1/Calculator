@@ -6,9 +6,13 @@ const deleteAll = document.querySelector('[data-int="delete-all"]');
 const deleteOne = document.getElementById('delete');
 const resultadoDisplay = document.getElementById('calc');
 const contaDisplay = document.getElementById('currentDisplay');
-const RDisplay = document.getElementById('result');
-let display1 = contaDisplay.innerHTML;
-let newNumber = false;
+const equal = document.getElementById('equal');
+let displayCount = contaDisplay.innerHTML;
+let newNumber;
+equal.addEventListener('click', (e) => {
+    calcula(displayCount);
+    newNumber = false;
+});
 numeros.forEach((num) => {
     num.addEventListener('click', (e) => {
         newNumber = true;
@@ -18,23 +22,17 @@ botoes.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target;
         let numeroTecla = target.dataset.int;
-        let classN = target.classList[2];
-        console.log(classN);
-        console.log(newNumber);
-        mostraDisplayAtual(numeroTecla, classN);
-        console.log(contaDisplay.innerHTML.length);
+        mostraDisplayAtual(numeroTecla);
     });
 });
 operadores.forEach((op) => {
     op.addEventListener('click', (e) => {
         newNumber = false;
-        console.log(newNumber);
         calcula(contaDisplay.innerHTML);
     });
 });
 var resultado;
-const mostraDisplayAtual = (numeros, op) => {
-    console.log(numeros);
+const mostraDisplayAtual = (numeros) => {
     if (newNumber) {
         contaDisplay.innerHTML += numeros;
     }
@@ -43,7 +41,6 @@ const mostraDisplayAtual = (numeros, op) => {
     }
 };
 const calcula = (contaDis) => {
-    console.log(contaDis);
     mostraDisplyResult(contaDis);
 };
 const mostraDisplyResult = (numerosDisplay = '0') => {
@@ -55,9 +52,7 @@ const mostraDisplyResult = (numerosDisplay = '0') => {
         contaDisplay.innerHTML = openasOperador;
         if (resultadoDisplay.innerHTML != '') {
             let concatenando = resultadoDisplay.innerHTML.concat(soNumeros);
-            console.log('result', concatenando);
             let novoResultado = eval(concatenando).toString();
-            console.log(novoResultado);
             resultadoDisplay.innerHTML = novoResultado;
         }
         else {
@@ -69,7 +64,6 @@ const mostraDisplyResult = (numerosDisplay = '0') => {
     }
 };
 deleteAll === null || deleteAll === void 0 ? void 0 : deleteAll.addEventListener('click', (e) => {
-    console.log('delete');
     contaDisplay.innerHTML = '';
     resultadoDisplay.innerHTML = '';
 });
@@ -78,17 +72,3 @@ deleteOne === null || deleteOne === void 0 ? void 0 : deleteOne.addEventListener
     let lastCaracter = allCounting.substring(0, allCounting.length - 1);
     contaDisplay.innerHTML = lastCaracter;
 });
-document.getElementById('equal').onclick = () => {
-    let reiniciado = true;
-    calcula(contaDisplay.innerHTML);
-    contaDisplay.innerHTML = '';
-    numeros.forEach((num) => {
-        num.addEventListener('click', (e) => {
-            newNumber = true;
-            if (reiniciado) {
-                resultadoDisplay.innerHTML = '';
-                reiniciado = false;
-            }
-        });
-    });
-};

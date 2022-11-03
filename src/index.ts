@@ -9,15 +9,19 @@ const deleteOne = document.getElementById('delete');
 const resultadoDisplay = document.getElementById('calc') as HTMLInputElement;
 const contaDisplay = document.getElementById('currentDisplay');
 
-const RDisplay = document.getElementById('result'); 
+const equal = document.getElementById('equal');
 
-let display1 = contaDisplay!.innerHTML;
-
-
+let displayCount = contaDisplay!.innerHTML;
+let newNumber: boolean;
 //Passar o operado para a função digitar, e se a classe for buttons-o, fazer o display mostrar só ele
 //Adding the event of click
 
-let newNumber = false;
+equal!.addEventListener('click', (e) => {
+    calcula(displayCount);
+    newNumber = false;
+    // displayCount = ''; 
+})
+
 numeros.forEach((num) => {
     num.addEventListener('click', (e) => {
         newNumber = true;
@@ -28,63 +32,50 @@ botoes.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target as HTMLElement;
         let numeroTecla = target.dataset.int;
-        
-        let classN = target.classList[2];
-        console.log(classN);
 
-        console.log(newNumber);
-        mostraDisplayAtual(numeroTecla!, classN)
-
-        console.log(contaDisplay!.innerHTML.length);
+        mostraDisplayAtual(numeroTecla!)
     })
 })
 
 operadores.forEach((op) => {
     op.addEventListener('click', (e) => {
         newNumber = false;
-        console.log(newNumber);
         calcula(contaDisplay!.innerHTML);
-    
     })
 })
 
 //Functions_______________________________________
-var resultado : number;
+var resultado: number;
 
-const mostraDisplayAtual = (numeros: string, op?: string) => {
-    console.log(numeros);
+const mostraDisplayAtual = (numeros: string) => {
     if (newNumber) {
         contaDisplay!.innerHTML += numeros;
-  
+
     } else {
         contaDisplay!.innerHTML = numeros;
     }
 }
 
-const calcula = (contaDis : string) => { 
-    console.log(contaDis);
+const calcula = (contaDis: string) => {
     mostraDisplyResult(contaDis) //Testeing the function 
 
 }
 
 const mostraDisplyResult = (numerosDisplay: string = '0') => {
-console.log(contaDisplay!.innerHTML.length);
+    console.log(contaDisplay!.innerHTML.length);
     if (contaDisplay!.innerHTML.length >= 2) {
         // Making the sum 
         let soNumeros = numerosDisplay.slice(0, -1);
         let result = eval(resultadoDisplay!.innerHTML + soNumeros);
-        
+
         //Último operador 
-        let openasOperador = numerosDisplay.charAt(numerosDisplay.length -1) 
-        contaDisplay!.innerHTML = openasOperador; 
-        
+        let openasOperador = numerosDisplay.charAt(numerosDisplay.length - 1)
+        contaDisplay!.innerHTML = openasOperador;
+
         if (resultadoDisplay!.innerHTML != '') { //Manda o resultado na segunda conta
             let concatenando = resultadoDisplay!.innerHTML.concat(soNumeros);
-            console.log('result', concatenando);
             let novoResultado = eval(concatenando).toString();
-            
-            console.log(novoResultado);
-            
+
             resultadoDisplay!.innerHTML = novoResultado;
         } else {
             resultadoDisplay!.innerHTML = result; //Manda o resultado na primeira conta
@@ -95,7 +86,6 @@ console.log(contaDisplay!.innerHTML.length);
 }
 
 deleteAll?.addEventListener('click', (e) => {
-    console.log('delete');
     contaDisplay!.innerHTML = ''
     resultadoDisplay!.innerHTML = '';
 
@@ -104,22 +94,8 @@ deleteAll?.addEventListener('click', (e) => {
 deleteOne?.addEventListener('click', (e) => {
     let allCounting = contaDisplay!.innerHTML;
     let lastCaracter = allCounting.substring(0, allCounting.length - 1);
-    contaDisplay!.innerHTML  = lastCaracter;
+    contaDisplay!.innerHTML = lastCaracter;
 })
 
-document.getElementById('equal')!.onclick = () => {
-    let reiniciado = true;
-
-    calcula(contaDisplay!.innerHTML);
-    contaDisplay!.innerHTML = ''
-
-    numeros.forEach((num) => {
-        num.addEventListener('click', (e) => {
-            newNumber = true;
-            if (reiniciado) {
-                resultadoDisplay!.innerHTML = '';
-                reiniciado = false;
-            }
-        })
-    })
-}
+// let classN = target.classList[2];
+// console.log(classN);

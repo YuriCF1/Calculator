@@ -67,7 +67,7 @@ html {
   margin-right: 1rem;
 }
 
-.buttons-n {
+.buttons-n, .buttons-equal {
   font-size: 6rem;
   text-align: center;
   width: 33.33%;
@@ -83,7 +83,7 @@ html {
   color: magenta;
 }
 
-.buttons-n:nth-last-child(1) {
+.buttons-equal {
   background-color: white;
 }
 
