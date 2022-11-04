@@ -17,9 +17,9 @@ let newNumber: boolean;
 //Adding the event of click
 
 // equal!.addEventListener('click', (e) => {
-//     calcula(displayCount);
+//     // calcula(displayCount);
 //     newNumber = false;
-//     // displayCount = ''; 
+//     displayCount = ''; 
 // })
 
 numeros.forEach((num) => {
@@ -64,16 +64,17 @@ const calcula = (contaDis: string) => {
 
 const mostraDisplyResult = (numerosDisplay: string = '0') => {
     console.log('Numeros: ',numerosDisplay);
+
+    let soNumeros = numerosDisplay.slice(0, -1);
     if (contaDisplay!.innerHTML.length >= 2) {
         
         // Making the sum 
-        let soNumeros = numerosDisplay.slice(0, -1);
-        console.log('So numeros: ', soNumeros); 
         let result = eval(resultadoDisplay!.innerHTML + soNumeros);
-
+        
         //Último operador
         let openasOperador = numerosDisplay.charAt(numerosDisplay.length - 1)
         contaDisplay!.innerHTML = openasOperador;
+
 
         if (resultadoDisplay!.innerHTML != '') { //Manda o resultado na segunda conta
             let concatenando = resultadoDisplay!.innerHTML.concat(soNumeros);

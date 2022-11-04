@@ -42,9 +42,8 @@ const calcula = (contaDis) => {
 };
 const mostraDisplyResult = (numerosDisplay = '0') => {
     console.log('Numeros: ', numerosDisplay);
+    let soNumeros = numerosDisplay.slice(0, -1);
     if (contaDisplay.innerHTML.length >= 2) {
-        let soNumeros = numerosDisplay.slice(0, -1);
-        console.log('So numeros: ', soNumeros);
         let result = eval(resultadoDisplay.innerHTML + soNumeros);
         let openasOperador = numerosDisplay.charAt(numerosDisplay.length - 1);
         contaDisplay.innerHTML = openasOperador;
