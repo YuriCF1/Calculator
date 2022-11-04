@@ -16,11 +16,11 @@ let newNumber: boolean;
 //Passar o operado para a função digitar, e se a classe for buttons-o, fazer o display mostrar só ele
 //Adding the event of click
 
-equal!.addEventListener('click', (e) => {
-    calcula(displayCount);
-    newNumber = false;
-    // displayCount = ''; 
-})
+// equal!.addEventListener('click', (e) => {
+//     calcula(displayCount);
+//     newNumber = false;
+//     // displayCount = ''; 
+// })
 
 numeros.forEach((num) => {
     num.addEventListener('click', (e) => {
@@ -32,8 +32,9 @@ botoes.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target as HTMLElement;
         let numeroTecla = target.dataset.int;
-
+        console.log(numeroTecla);
         mostraDisplayAtual(numeroTecla!)
+        
     })
 })
 
@@ -62,13 +63,15 @@ const calcula = (contaDis: string) => {
 }
 
 const mostraDisplyResult = (numerosDisplay: string = '0') => {
-    console.log(contaDisplay!.innerHTML.length);
+    console.log('Numeros: ',numerosDisplay);
     if (contaDisplay!.innerHTML.length >= 2) {
+        
         // Making the sum 
         let soNumeros = numerosDisplay.slice(0, -1);
+        console.log('So numeros: ', soNumeros); 
         let result = eval(resultadoDisplay!.innerHTML + soNumeros);
 
-        //Último operador 
+        //Último operador
         let openasOperador = numerosDisplay.charAt(numerosDisplay.length - 1)
         contaDisplay!.innerHTML = openasOperador;
 
