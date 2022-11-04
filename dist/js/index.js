@@ -51,6 +51,9 @@ const mostraDisplyResult = (numerosDisplay = '0') => {
             let concatenando = resultadoDisplay.innerHTML.concat(soNumeros);
             let novoResultado = eval(concatenando).toString();
             resultadoDisplay.innerHTML = novoResultado;
+            if (novoResultado = '=') {
+                contaDisplay.innerHTML = '';
+            }
         }
         else {
             resultadoDisplay.innerHTML = result;

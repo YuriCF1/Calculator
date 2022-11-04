@@ -64,7 +64,6 @@ const calcula = (contaDis: string) => {
 
 const mostraDisplyResult = (numerosDisplay: string = '0') => {
     console.log('Numeros: ',numerosDisplay);
-
     let soNumeros = numerosDisplay.slice(0, -1);
     if (contaDisplay!.innerHTML.length >= 2) {
         
@@ -75,12 +74,14 @@ const mostraDisplyResult = (numerosDisplay: string = '0') => {
         let openasOperador = numerosDisplay.charAt(numerosDisplay.length - 1)
         contaDisplay!.innerHTML = openasOperador;
 
-
         if (resultadoDisplay!.innerHTML != '') { //Manda o resultado na segunda conta
             let concatenando = resultadoDisplay!.innerHTML.concat(soNumeros);
             let novoResultado = eval(concatenando).toString();
-
             resultadoDisplay!.innerHTML = novoResultado;
+
+            if (novoResultado = '=') {
+                contaDisplay!.innerHTML = ''
+            }
         } else {
             resultadoDisplay!.innerHTML = result; //Manda o resultado na primeira conta
         }
