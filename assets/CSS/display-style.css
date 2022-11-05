@@ -67,7 +67,7 @@ html {
   margin-right: 1rem;
 }
 
-.buttons-n, .buttons-equal {
+.buttons-n {
   font-size: 6rem;
   text-align: center;
   width: 33.33%;
@@ -89,4 +89,16 @@ html {
 
 .buttons-n:nth-last-child(2) {
   background-color: red;
+}
+
+#equal {
+  font-size: 6rem;
+  text-align: center;
+  width: 33.33%;
+  height: 8.8rem;
+
+  box-sizing: border-box;
+  border: outset 5px grey;
+  background-color: blue;
+  cursor: pointer;
 }
