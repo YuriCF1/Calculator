@@ -12,7 +12,7 @@ const equal = document.getElementById('equal');
 
 let displayCount = contaDisplay!.innerHTML;
 let newNumber: boolean;
-let newOperator = true;
+// let newOperator = true;
 
 //Adding the event of click
 numeros.forEach((num) => {
@@ -27,21 +27,20 @@ botoes.forEach((num) => {
         let numeroTecla = target.dataset.int;
 
         //Fazendo contas recomeçarem após o sinal de igualdade
-        if (newOperator) {
+        // if (newOperator) {
             mostraDisplayAtual(numeroTecla!)
-        } 
-        else {
-            resultadoDisplay!.innerHTML = ''
-            // newOperator = true;
-            mostraDisplayAtual(numeroTecla!)
-        }
+        // } 
+        // else {
+        //     resultadoDisplay!.innerHTML = ''
+        //     mostraDisplayAtual(numeroTecla!)
+        // }
     })
 })
 
 operadores.forEach((op) => {
     op.addEventListener('click', (e) => {
         newNumber = false;
-        newOperator = true;
+        // newOperator = true;
         calcula(contaDisplay!.innerHTML);
     })
 })
@@ -56,6 +55,7 @@ const mostraDisplayAtual = (numeros: string) => {
     } else {
         contaDisplay!.innerHTML = numeros;
     }
+    verifyEqual()
 }
 
 const calcula = (contaDis: string) => {
@@ -63,6 +63,12 @@ const calcula = (contaDis: string) => {
 
 }
 
+const verifyEqual = (equal?: string) => {
+    if (equal === '=' || contaDisplay!.innerHTML === '=')  {
+        contaDisplay!.innerHTML = '';
+    } 
+
+}
 const mostraDisplyResult = (numerosDisplay: string = '0') => {
 
     let soNumeros = numerosDisplay.slice(0, -1);
@@ -83,15 +89,16 @@ const mostraDisplyResult = (numerosDisplay: string = '0') => {
             resultadoDisplay!.innerHTML = novoResultado; //Resultado final 
 
             //Tirando o símbolo de 'igual', caso seja clicado
-            if (novoResultado = '=') {
+            if (novoResultado === '=') {
                 contaDisplay!.innerHTML = ''
-                newOperator = false; 
+                // newOperator = true; 
             }
 
         } else { //Manda o resultado na primeira conta|| Redundante?
             resultadoDisplay!.innerHTML = result; 
         }
 
+        verifyEqual(openasOperador)
     } else {
         contaDisplay!.innerHTML = numerosDisplay
     }
