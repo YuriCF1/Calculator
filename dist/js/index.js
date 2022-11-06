@@ -9,6 +9,7 @@ const contaDisplay = document.getElementById('currentDisplay');
 const equal = document.getElementById('equal');
 let displayCount = contaDisplay.innerHTML;
 let newNumber;
+let newOperator = true;
 numeros.forEach((num) => {
     num.addEventListener('click', (e) => {
         newNumber = true;
@@ -18,13 +19,19 @@ botoes.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target;
         let numeroTecla = target.dataset.int;
-        console.log(numeroTecla);
-        mostraDisplayAtual(numeroTecla);
+        if (newOperator) {
+            mostraDisplayAtual(numeroTecla);
+        }
+        else {
+            resultadoDisplay.innerHTML = '';
+            mostraDisplayAtual(numeroTecla);
+        }
     });
 });
 operadores.forEach((op) => {
     op.addEventListener('click', (e) => {
         newNumber = false;
+        newOperator = true;
         calcula(contaDisplay.innerHTML);
     });
 });
@@ -41,7 +48,6 @@ const calcula = (contaDis) => {
     mostraDisplyResult(contaDis);
 };
 const mostraDisplyResult = (numerosDisplay = '0') => {
-    console.log('Numeros: ', numerosDisplay);
     let soNumeros = numerosDisplay.slice(0, -1);
     if (contaDisplay.innerHTML.length >= 2) {
         let result = eval(resultadoDisplay.innerHTML + soNumeros);
@@ -53,6 +59,7 @@ const mostraDisplyResult = (numerosDisplay = '0') => {
             resultadoDisplay.innerHTML = novoResultado;
             if (novoResultado = '=') {
                 contaDisplay.innerHTML = '';
+                newOperator = false;
             }
         }
         else {
