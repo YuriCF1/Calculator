@@ -16,6 +16,7 @@ let newOperator: boolean = true;
 
 const operators = ['/', '%', 'root', '*', '-', '+'];
 
+//Verify is the first click after the equal sign is a operator or not
 const verify1Caracter = (cara: string) => {
     for (var i = 0; i < operators.length; i++) {
         if(cara.substring(0, 1) === operators[i]) {
@@ -39,7 +40,6 @@ botoes.forEach((num) => {
         let numeroTecla = target.dataset.int;
 
         mostraDisplayAtual(numeroTecla!)
-
     })
 })
 
@@ -80,8 +80,8 @@ const verifyEqual = (equal?: string) => {
     if (equal === '=' || contaDisplay!.innerHTML === '=')  {
         contaDisplay!.innerHTML = '';
     } 
-
 }
+
 const mostraDisplyResult = (numerosDisplay: string = '0') => {
     let soNumeros = numerosDisplay.slice(0, -1);
     if (contaDisplay!.innerHTML.length >= 2) {
