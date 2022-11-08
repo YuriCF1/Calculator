@@ -12,7 +12,19 @@ const equal = document.getElementById('equal');
 
 let displayCount = contaDisplay!.innerHTML;
 let newNumber: boolean;
-// let newOperator = true;
+let newOperator: boolean = true;
+
+const operators = ['/', '%', 'root', '*', '-', '+'];
+
+const verify1Caracter = (cara: string) => {
+    for (var i = 0; i < operators.length; i++) {
+        if(cara.substring(0, 1) === operators[i]) {
+            newOperator = true
+            console.log(newOperator);
+        }
+    }
+}
+
 
 //Adding the event of click
 numeros.forEach((num) => {
@@ -26,22 +38,23 @@ botoes.forEach((num) => {
         let target = e.target as HTMLElement;
         let numeroTecla = target.dataset.int;
 
-        //Fazendo contas recomeçarem após o sinal de igualdade
-        // if (newOperator) {
-            mostraDisplayAtual(numeroTecla!)
-        // } 
-        // else {
-        //     resultadoDisplay!.innerHTML = ''
-        //     mostraDisplayAtual(numeroTecla!)
-        // }
+        mostraDisplayAtual(numeroTecla!)
+
     })
 })
 
 operadores.forEach((op) => {
     op.addEventListener('click', (e) => {
-        newNumber = false;
-        // newOperator = true;
-        calcula(contaDisplay!.innerHTML);
+        newNumber = false;        
+        verify1Caracter(contaDisplay!.innerHTML)
+
+        if (newOperator) {
+            calcula(contaDisplay!.innerHTML);
+        } else {
+            resultadoDisplay!.innerHTML = '';
+            calcula(contaDisplay!.innerHTML);
+        }
+        newOperator = false;
     })
 })
 
@@ -70,7 +83,6 @@ const verifyEqual = (equal?: string) => {
 
 }
 const mostraDisplyResult = (numerosDisplay: string = '0') => {
-
     let soNumeros = numerosDisplay.slice(0, -1);
     if (contaDisplay!.innerHTML.length >= 2) {
 
@@ -91,9 +103,8 @@ const mostraDisplyResult = (numerosDisplay: string = '0') => {
             //Tirando o símbolo de 'igual', caso seja clicado
             if (novoResultado === '=') {
                 contaDisplay!.innerHTML = ''
-                // newOperator = true; 
             }
-
+            
         } else { //Manda o resultado na primeira conta|| Redundante?
             resultadoDisplay!.innerHTML = result; 
         }

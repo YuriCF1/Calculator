@@ -9,6 +9,16 @@ const contaDisplay = document.getElementById('currentDisplay');
 const equal = document.getElementById('equal');
 let displayCount = contaDisplay.innerHTML;
 let newNumber;
+let newOperator = true;
+const operators = ['/', '%', 'root', '*', '-', '+'];
+const verify1Caracter = (cara) => {
+    for (var i = 0; i < operators.length; i++) {
+        if (cara.substring(0, 1) === operators[i]) {
+            newOperator = true;
+            console.log(newOperator);
+        }
+    }
+};
 numeros.forEach((num) => {
     num.addEventListener('click', (e) => {
         newNumber = true;
@@ -24,7 +34,15 @@ botoes.forEach((num) => {
 operadores.forEach((op) => {
     op.addEventListener('click', (e) => {
         newNumber = false;
-        calcula(contaDisplay.innerHTML);
+        verify1Caracter(contaDisplay.innerHTML);
+        if (newOperator) {
+            calcula(contaDisplay.innerHTML);
+        }
+        else {
+            resultadoDisplay.innerHTML = '';
+            calcula(contaDisplay.innerHTML);
+        }
+        newOperator = false;
     });
 });
 var resultado;
