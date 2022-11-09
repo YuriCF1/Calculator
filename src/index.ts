@@ -26,7 +26,6 @@ const verify1Caracter = (cara: string) => {
     }
 }
 
-
 //Adding the event of click
 numeros.forEach((num) => {
     num.addEventListener('click', (e) => {
