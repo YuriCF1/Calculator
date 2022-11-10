@@ -53,6 +53,7 @@ operadores.forEach((op) => {
             resultadoDisplay!.innerHTML = '';
             calcula(contaDisplay!.innerHTML);
         }
+        
         newOperator = false;
     })
 })
@@ -70,18 +71,35 @@ const mostraDisplayAtual = (numeros: string) => {
     verifyEqual()
 }
 
-const calcula = (contaDis: string) => {
-    mostraDisplyResult(contaDis) //Testeing the function 
-
-}
-
 const verifyEqual = (equal?: string) => {
     if (equal === '=' || contaDisplay!.innerHTML === '=')  {
         contaDisplay!.innerHTML = '';
     } 
 }
 
-const mostraDisplyResult = (numerosDisplay: string = '0') => {
+//_____________________________________________________________________________________________________
+const calcula = (contaDis: string) => {
+    let firstCaracter = contaDisplay!.innerHTML.substring(0, 1);
+    console.log(firstCaracter);
+    
+    if (firstCaracter === '%' || 'root') {
+        porcentage(contaDisplay!.innerHTML)
+    } else {
+        nomralCount(contaDis) //Testeing the function 
+        
+    }
+}
+
+//Special counts__________________________________________
+const porcentage = (displayCount: string) => {
+    if (resultadoDisplay!.innerHTML.length === 0) {
+        
+    }
+}
+
+//_____________________________________________________________________________________________________
+
+const nomralCount = (numerosDisplay: string = '0') => {
     let soNumeros = numerosDisplay.slice(0, -1);
     if (contaDisplay!.innerHTML.length >= 2) {
 

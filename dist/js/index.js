@@ -55,15 +55,26 @@ const mostraDisplayAtual = (numeros) => {
     }
     verifyEqual();
 };
-const calcula = (contaDis) => {
-    mostraDisplyResult(contaDis);
-};
 const verifyEqual = (equal) => {
     if (equal === '=' || contaDisplay.innerHTML === '=') {
         contaDisplay.innerHTML = '';
     }
 };
-const mostraDisplyResult = (numerosDisplay = '0') => {
+const calcula = (contaDis) => {
+    let firstCaracter = contaDisplay.innerHTML.substring(0, 1);
+    console.log(firstCaracter);
+    if (firstCaracter === '%' || 'root') {
+        porcentage(contaDisplay.innerHTML);
+    }
+    else {
+        nomralCount(contaDis);
+    }
+};
+const porcentage = (displayCount) => {
+    if (resultadoDisplay.innerHTML.length === 0) {
+    }
+};
+const nomralCount = (numerosDisplay = '0') => {
     let soNumeros = numerosDisplay.slice(0, -1);
     if (contaDisplay.innerHTML.length >= 2) {
         let result = eval(resultadoDisplay.innerHTML + soNumeros);
