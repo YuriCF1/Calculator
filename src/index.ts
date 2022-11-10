@@ -95,6 +95,8 @@ const mostraDisplyResult = (numerosDisplay: string = '0') => {
         //Concatena a conta com o resultado
         if (resultadoDisplay!.innerHTML != '') { 
             let concatenando = resultadoDisplay!.innerHTML.concat(soNumeros);
+
+            //Criar função que seja acionada para quando for um operado que não entre no ritmo do eval
             let novoResultado = eval(concatenando).toString();
 
             resultadoDisplay!.innerHTML = novoResultado; //Resultado final 
