@@ -83,6 +83,10 @@ html {
   color: magenta;
 }
 
+.buttons-n:active {
+  color: grey;
+}
+
 .buttons-equal {
   background-color: white;
 }
