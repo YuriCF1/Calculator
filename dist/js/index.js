@@ -7,7 +7,6 @@ const deleteOne = document.getElementById('delete');
 const resultadoDisplay = document.getElementById('calc');
 const contaDisplay = document.getElementById('currentDisplay');
 const equal = document.getElementById('equal');
-let displayCount = contaDisplay.innerHTML;
 let newNumber;
 let newOperator = true;
 const operators = ['/', '%', 'root', '*', '-', '+'];
@@ -15,7 +14,6 @@ const verify1Caracter = (cara) => {
     for (var i = 0; i < operators.length; i++) {
         if (cara.substring(0, 1) === operators[i]) {
             newOperator = true;
-            console.log(newOperator);
         }
     }
 };
@@ -62,16 +60,28 @@ const verifyEqual = (equal) => {
 };
 const calcula = (contaDis) => {
     let firstCaracter = contaDisplay.innerHTML.substring(0, 1);
-    console.log(firstCaracter);
-    if (firstCaracter === '%' || 'root') {
-        porcentage(contaDisplay.innerHTML);
+    if (firstCaracter === '%' || firstCaracter === 'r') {
+        porcentage(contaDisplay.innerHTML, firstCaracter);
     }
     else {
         nomralCount(contaDis);
     }
 };
-const porcentage = (displayCount) => {
-    if (resultadoDisplay.innerHTML.length === 0) {
+const porcentage = (numerosDaConta, op) => {
+    if (op === "%") {
+        if (resultadoDisplay.innerHTML.length === 0) {
+            alert('Adicione o valor total, e depois a porcentagem desejada');
+            contaDisplay.innerHTML = '';
+            console.log('vazio');
+        }
+        else if (resultadoDisplay.innerHTML.length > 0) {
+            if (numerosDaConta.substring(0, 1) === '%') {
+                let soNumeros = numerosDaConta.slice(0, -1);
+                console.log(soNumeros);
+                newOperator = false;
+                let concatena = resultadoDisplay.innerHTML + "*" + `(${soNumeros}/100)`;
+            }
+        }
     }
 };
 const nomralCount = (numerosDisplay = '0') => {

@@ -10,7 +10,7 @@ const contaDisplay = document.getElementById('currentDisplay');
 
 const equal = document.getElementById('equal');
 
-let displayCount = contaDisplay!.innerHTML;
+// let displayCount = contaDisplay!.innerHTML;
 let newNumber: boolean;
 let newOperator: boolean = true;
 
@@ -21,7 +21,7 @@ const verify1Caracter = (cara: string) => {
     for (var i = 0; i < operators.length; i++) {
         if(cara.substring(0, 1) === operators[i]) {
             newOperator = true
-            console.log(newOperator);
+            // console.log(newOperator);
         }
     }
 }
@@ -53,7 +53,7 @@ operadores.forEach((op) => {
             resultadoDisplay!.innerHTML = '';
             calcula(contaDisplay!.innerHTML);
         }
-        
+
         newOperator = false;
     })
 })
@@ -80,20 +80,35 @@ const verifyEqual = (equal?: string) => {
 //_____________________________________________________________________________________________________
 const calcula = (contaDis: string) => {
     let firstCaracter = contaDisplay!.innerHTML.substring(0, 1);
-    console.log(firstCaracter);
+    // console.log(firstCaracter);
     
-    if (firstCaracter === '%' || 'root') {
-        porcentage(contaDisplay!.innerHTML)
+    if (firstCaracter === '%' || firstCaracter === 'r') {
+        porcentage(contaDisplay!.innerHTML, firstCaracter)
     } else {
         nomralCount(contaDis) //Testeing the function 
-        
     }
 }
 
 //Special counts__________________________________________
-const porcentage = (displayCount: string) => {
-    if (resultadoDisplay!.innerHTML.length === 0) {
-        
+const porcentage = (numerosDaConta: string, op: string) => {
+    if (op === "%") {
+        if (resultadoDisplay!.innerHTML.length === 0) {
+            alert('Adicione o valor total, e depois a porcentagem desejada')
+            contaDisplay!.innerHTML = '';
+            console.log('vazio');
+        } else if (resultadoDisplay!.innerHTML.length > 0 ) {
+            if(numerosDaConta.substring(0, 1) === '%') {
+                // newOperator = true; //É verdade?
+                let soNumeros = numerosDaConta.slice(0, -1);
+                console.log(soNumeros);
+
+                newOperator = false;
+                // console.log('Per');
+
+                let concatena = resultadoDisplay!.innerHTML + "*" + `(${soNumeros}/100)`
+                // let conta = eval(concatena).toString();
+            }
+        }
     }
 }
 
