@@ -64,7 +64,7 @@ const calcula = (contaDis) => {
         porcentage(contaDisplay.innerHTML, firstCaracter);
     }
     else {
-        nomralCount(contaDis);
+        normalCount(contaDis);
     }
 };
 const porcentage = (numerosDaConta, op) => {
@@ -76,15 +76,18 @@ const porcentage = (numerosDaConta, op) => {
         }
         else if (resultadoDisplay.innerHTML.length > 0) {
             if (numerosDaConta.substring(0, 1) === '%') {
-                let soNumeros = numerosDaConta.slice(0, -1);
+                let soNumeros = numerosDaConta.slice(1, -1);
                 console.log(soNumeros);
                 newOperator = false;
                 let concatena = resultadoDisplay.innerHTML + "*" + `(${soNumeros}/100)`;
+                let conta = eval(concatena).toString();
+                console.log(conta);
             }
         }
     }
+    contaDisplay.innerHTML = op;
 };
-const nomralCount = (numerosDisplay = '0') => {
+const normalCount = (numerosDisplay = '0') => {
     let soNumeros = numerosDisplay.slice(0, -1);
     if (contaDisplay.innerHTML.length >= 2) {
         let result = eval(resultadoDisplay.innerHTML + soNumeros);

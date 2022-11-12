@@ -82,10 +82,10 @@ const calcula = (contaDis: string) => {
     let firstCaracter = contaDisplay!.innerHTML.substring(0, 1);
     // console.log(firstCaracter);
     
-    if (firstCaracter === '%' || firstCaracter === 'r') {
+    if (firstCaracter === '%' || firstCaracter === 'r') { //MANDAR ESSE IF PARA A FUNÇÃO?======
         porcentage(contaDisplay!.innerHTML, firstCaracter)
     } else {
-        nomralCount(contaDis) //Testeing the function 
+        normalCount(contaDis) //Testeing the function 
     }
 }
 
@@ -99,22 +99,31 @@ const porcentage = (numerosDaConta: string, op: string) => {
         } else if (resultadoDisplay!.innerHTML.length > 0 ) {
             if(numerosDaConta.substring(0, 1) === '%') {
                 // newOperator = true; //É verdade?
-                let soNumeros = numerosDaConta.slice(0, -1);
+                let soNumeros = numerosDaConta.slice(1, -1);
                 console.log(soNumeros);
-
+                
                 newOperator = false;
                 // console.log('Per');
-
+                
                 let concatena = resultadoDisplay!.innerHTML + "*" + `(${soNumeros}/100)`
-                // let conta = eval(concatena).toString();
+                let conta = eval(concatena).toString();
+                console.log(conta);
+
             }
         }
     }
+    contaDisplay!.innerHTML = op;
 }
 
 //_____________________________________________________________________________________________________
 
-const nomralCount = (numerosDisplay: string = '0') => {
+const normalCount = (numerosDisplay: string = '0') => {
+    // if (numerosDisplay.substring(0, 1) === '%' || numerosDisplay.substring(0, 1) === 'r') {
+    //     numerosDisplay = numerosDisplay.slice(1, -1)
+    //     console.log(numerosDisplay);
+    //     console.log('aasda');
+    // }
+
     let soNumeros = numerosDisplay.slice(0, -1);
     if (contaDisplay!.innerHTML.length >= 2) {
 
