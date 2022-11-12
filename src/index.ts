@@ -21,7 +21,6 @@ const verify1Caracter = (cara: string) => {
     for (var i = 0; i < operators.length; i++) {
         if(cara.substring(0, 1) === operators[i]) {
             newOperator = true
-            // console.log(newOperator);
         }
     }
 }
@@ -80,10 +79,12 @@ const verifyEqual = (equal?: string) => {
 //_____________________________________________________________________________________________________
 const calcula = (contaDis: string) => {
     let firstCaracter = contaDisplay!.innerHTML.substring(0, 1);
-    // console.log(firstCaracter);
+    let lastCaracter = contaDisplay!.innerHTML.slice(-1);
+     console.log(lastCaracter);
     
     if (firstCaracter === '%' || firstCaracter === 'r') { //MANDAR ESSE IF PARA A FUNÇÃO?======
         porcentage(contaDisplay!.innerHTML, firstCaracter)
+        contaDisplay!.innerHTML = lastCaracter;
     } else {
         normalCount(contaDis) //Testeing the function 
     }
@@ -94,8 +95,8 @@ const porcentage = (numerosDaConta: string, op: string) => {
     if (op === "%") {
         if (resultadoDisplay!.innerHTML.length === 0) {
             alert('Adicione o valor total, e depois a porcentagem desejada')
-            contaDisplay!.innerHTML = '';
             console.log('vazio');
+            contaDisplay!.innerHTML = '';
         } else if (resultadoDisplay!.innerHTML.length > 0 ) {
             if(numerosDaConta.substring(0, 1) === '%') {
                 // newOperator = true; //É verdade?
@@ -103,12 +104,11 @@ const porcentage = (numerosDaConta: string, op: string) => {
                 console.log(soNumeros);
                 
                 newOperator = false;
-                // console.log('Per');
                 
                 let concatena = resultadoDisplay!.innerHTML + "*" + `(${soNumeros}/100)`
                 let conta = eval(concatena).toString();
                 console.log(conta);
-
+                resultadoDisplay!.innerHTML = conta;
             }
         }
     }
@@ -123,6 +123,8 @@ const normalCount = (numerosDisplay: string = '0') => {
     //     console.log(numerosDisplay);
     //     console.log('aasda');
     // }
+
+    // console.log(firstCaracter);
 
     let soNumeros = numerosDisplay.slice(0, -1);
     if (contaDisplay!.innerHTML.length >= 2) {

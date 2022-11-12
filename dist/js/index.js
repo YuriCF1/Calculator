@@ -60,8 +60,11 @@ const verifyEqual = (equal) => {
 };
 const calcula = (contaDis) => {
     let firstCaracter = contaDisplay.innerHTML.substring(0, 1);
+    let lastCaracter = contaDisplay.innerHTML.slice(-1);
+    console.log(lastCaracter);
     if (firstCaracter === '%' || firstCaracter === 'r') {
         porcentage(contaDisplay.innerHTML, firstCaracter);
+        contaDisplay.innerHTML = lastCaracter;
     }
     else {
         normalCount(contaDis);
@@ -71,8 +74,8 @@ const porcentage = (numerosDaConta, op) => {
     if (op === "%") {
         if (resultadoDisplay.innerHTML.length === 0) {
             alert('Adicione o valor total, e depois a porcentagem desejada');
-            contaDisplay.innerHTML = '';
             console.log('vazio');
+            contaDisplay.innerHTML = '';
         }
         else if (resultadoDisplay.innerHTML.length > 0) {
             if (numerosDaConta.substring(0, 1) === '%') {
@@ -82,6 +85,7 @@ const porcentage = (numerosDaConta, op) => {
                 let concatena = resultadoDisplay.innerHTML + "*" + `(${soNumeros}/100)`;
                 let conta = eval(concatena).toString();
                 console.log(conta);
+                resultadoDisplay.innerHTML = conta;
             }
         }
     }
