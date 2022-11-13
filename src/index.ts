@@ -82,7 +82,7 @@ const calcula = (contaDis: string) => {
     let lastCaracter = contaDisplay!.innerHTML.slice(-1);
      console.log(lastCaracter);
     
-    if (firstCaracter === '%' || firstCaracter === 'r') {
+    if (firstCaracter === '%' || firstCaracter === '√') {
         porcentage(contaDisplay!.innerHTML, firstCaracter)
         contaDisplay!.innerHTML = lastCaracter;
     } else {
@@ -91,8 +91,8 @@ const calcula = (contaDis: string) => {
 }
 
 //Special counts__________________________________________
-const porcentage = (numerosDaConta: string, op: string) => {
-    if (op === "%") {
+const porcentage = (numerosDaConta: string, firstOp: string) => {
+    if (firstOp === "%") {
         if (resultadoDisplay!.innerHTML.length === 0) {
             alert('Adicione o valor total, e depois a porcentagem desejada')
             contaDisplay!.innerHTML = '';
@@ -100,7 +100,6 @@ const porcentage = (numerosDaConta: string, op: string) => {
             if(numerosDaConta.substring(0, 1) === '%') {
                 // newOperator = true; //É verdade?
                 let soNumeros = numerosDaConta.slice(1, -1);
-                console.log(soNumeros);
                 
                 newOperator = false;
                 
@@ -109,11 +108,22 @@ const porcentage = (numerosDaConta: string, op: string) => {
                 resultadoDisplay!.innerHTML = conta;
             }
         }
-    } else if (op === "r") {
-        
-        
+    } else if (firstOp === "√") {
+        if (resultadoDisplay!.innerHTML.length === 0) {
+            // alert('Adicione o valor total, e depois a porcentagem desejada')
+            if (numerosDaConta.substring(0, 1) === '√') {
+            let soNumeros = Number(numerosDaConta.slice(1, -1));
+            let raiz = Math.sqrt(soNumeros).toString();
+            resultadoDisplay!.innerHTML = raiz;
+            // }
+            newOperator = false;
+            }
+        } else if (resultadoDisplay!.innerHTML.length > 0) {
+            
+
+        }
     }
-    contaDisplay!.innerHTML = op;
+    contaDisplay!.innerHTML = firstOp;
 }
 
 //_____________________________________________________________________________________________________

@@ -62,7 +62,7 @@ const calcula = (contaDis) => {
     let firstCaracter = contaDisplay.innerHTML.substring(0, 1);
     let lastCaracter = contaDisplay.innerHTML.slice(-1);
     console.log(lastCaracter);
-    if (firstCaracter === '%' || firstCaracter === 'r') {
+    if (firstCaracter === '%' || firstCaracter === '√') {
         porcentage(contaDisplay.innerHTML, firstCaracter);
         contaDisplay.innerHTML = lastCaracter;
     }
@@ -70,26 +70,35 @@ const calcula = (contaDis) => {
         normalCount(contaDis);
     }
 };
-const porcentage = (numerosDaConta, op) => {
-    if (op === "%") {
+const porcentage = (numerosDaConta, firstOp) => {
+    if (firstOp === "%") {
         if (resultadoDisplay.innerHTML.length === 0) {
             alert('Adicione o valor total, e depois a porcentagem desejada');
-            console.log('vazio');
             contaDisplay.innerHTML = '';
         }
         else if (resultadoDisplay.innerHTML.length > 0) {
             if (numerosDaConta.substring(0, 1) === '%') {
                 let soNumeros = numerosDaConta.slice(1, -1);
-                console.log(soNumeros);
                 newOperator = false;
                 let concatena = resultadoDisplay.innerHTML + "*" + `(${soNumeros}/100)`;
                 let conta = eval(concatena).toString();
-                console.log(conta);
                 resultadoDisplay.innerHTML = conta;
             }
         }
     }
-    contaDisplay.innerHTML = op;
+    else if (firstOp === "√") {
+        if (resultadoDisplay.innerHTML.length === 0) {
+            if (numerosDaConta.substring(0, 1) === '√') {
+                let soNumeros = Number(numerosDaConta.slice(1, -1));
+                let raiz = Math.sqrt(soNumeros).toString();
+                resultadoDisplay.innerHTML = raiz;
+                newOperator = false;
+            }
+        }
+        else if (resultadoDisplay.innerHTML.length > 0) {
+        }
+    }
+    contaDisplay.innerHTML = firstOp;
 };
 const normalCount = (numerosDisplay = '0') => {
     let soNumeros = numerosDisplay.slice(0, -1);
