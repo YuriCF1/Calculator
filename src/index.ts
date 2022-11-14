@@ -82,6 +82,7 @@ const calcula = (contaDis: string) => {
     let lastCaracter = contaDisplay!.innerHTML.slice(-1);
      console.log(lastCaracter);
     
+     //Criar outra logica para a raiz quadraada? Ja q ela pode ser chamada com apenas um número
     if (firstCaracter === '%' || firstCaracter === '√') {
         porcentage(contaDisplay!.innerHTML, firstCaracter)
         contaDisplay!.innerHTML = lastCaracter;
@@ -119,7 +120,7 @@ const porcentage = (numerosDaConta: string, firstOp: string) => {
             newOperator = false;
             }
         } else if (resultadoDisplay!.innerHTML.length > 0) {
-            
+
 
         }
     }
