@@ -13,6 +13,7 @@ const equal = document.getElementById('equal');
 // let displayCount = contaDisplay!.innerHTML;
 let newNumber: boolean;
 let newOperator: boolean = true;
+let dot: boolean = false;
 
 const operators = ['/', '%', 'root', '*', '-', '+'];
 
@@ -36,8 +37,13 @@ botoes.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target as HTMLElement;
         let numeroTecla = target.dataset.int;
-
-        mostraDisplayAtual(numeroTecla!)
+        
+        if (numeroTecla === '.' && dot) { //Não permite mais de um ponto por conta
+            return
+        } else {
+            mostraDisplayAtual(numeroTecla!)
+            
+        }
     })
 })
 
@@ -61,19 +67,29 @@ operadores.forEach((op) => {
 var resultado: number;
 
 const mostraDisplayAtual = (numeros: string) => {
+    verifyDot();
     if (newNumber) {
         contaDisplay!.innerHTML += numeros;
-
     } else {
         contaDisplay!.innerHTML = numeros;
     }
-    verifyEqual()
+    verifyEqual();
 }
 
 const verifyEqual = (equal?: string) => {
     if (equal === '=' || contaDisplay!.innerHTML === '=')  {
         contaDisplay!.innerHTML = '';
     } 
+}
+
+const verifyDot = () => {
+    let conta = contaDisplay!.innerHTML;
+    for (var i = 0; i < conta.length; i++) {
+        if(conta[i] === '.') {
+            dot = true
+            console.log(dot);
+        }
+    }
 }
 
 //_____________________________________________________________________________________________________
@@ -89,6 +105,7 @@ const calcula = (contaDis: string) => {
     } else {
         normalCount(contaDis) //Testeing the function 
     }
+    dot = false;
 }
 
 //Special counts__________________________________________
@@ -118,9 +135,9 @@ const porcentage = (numerosDaConta: string, firstOp: string) => {
             resultadoDisplay!.innerHTML = raiz;
             // }
             newOperator = false;
+            verifyEqual()
             }
         } else if (resultadoDisplay!.innerHTML.length > 0) {
-
 
         }
     }

@@ -9,6 +9,7 @@ const contaDisplay = document.getElementById('currentDisplay');
 const equal = document.getElementById('equal');
 let newNumber;
 let newOperator = true;
+let dot = false;
 const operators = ['/', '%', 'root', '*', '-', '+'];
 const verify1Caracter = (cara) => {
     for (var i = 0; i < operators.length; i++) {
@@ -26,7 +27,12 @@ botoes.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target;
         let numeroTecla = target.dataset.int;
-        mostraDisplayAtual(numeroTecla);
+        if (numeroTecla === '.' && dot) {
+            return;
+        }
+        else {
+            mostraDisplayAtual(numeroTecla);
+        }
     });
 });
 operadores.forEach((op) => {
@@ -45,6 +51,7 @@ operadores.forEach((op) => {
 });
 var resultado;
 const mostraDisplayAtual = (numeros) => {
+    verifyDot();
     if (newNumber) {
         contaDisplay.innerHTML += numeros;
     }
@@ -58,6 +65,15 @@ const verifyEqual = (equal) => {
         contaDisplay.innerHTML = '';
     }
 };
+const verifyDot = () => {
+    let conta = contaDisplay.innerHTML;
+    for (var i = 0; i < conta.length; i++) {
+        if (conta[i] === '.') {
+            dot = true;
+            console.log(dot);
+        }
+    }
+};
 const calcula = (contaDis) => {
     let firstCaracter = contaDisplay.innerHTML.substring(0, 1);
     let lastCaracter = contaDisplay.innerHTML.slice(-1);
@@ -69,6 +85,7 @@ const calcula = (contaDis) => {
     else {
         normalCount(contaDis);
     }
+    dot = false;
 };
 const porcentage = (numerosDaConta, firstOp) => {
     if (firstOp === "%") {
@@ -93,6 +110,7 @@ const porcentage = (numerosDaConta, firstOp) => {
                 let raiz = Math.sqrt(soNumeros).toString();
                 resultadoDisplay.innerHTML = raiz;
                 newOperator = false;
+                verifyEqual();
             }
         }
         else if (resultadoDisplay.innerHTML.length > 0) {
