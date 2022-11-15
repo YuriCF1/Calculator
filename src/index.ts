@@ -14,6 +14,7 @@ const equal = document.getElementById('equal');
 //CONSERTAR OS PONTOS
 
 // let displayCount = contaDisplay!.innerHTML;
+let firstClickValid: boolean;
 let newNumber: boolean;
 let newOperator: boolean = true;
 let dot: boolean = false;
@@ -23,9 +24,17 @@ const operators = ['/', '%', 'root', '*', '-', '+'];
 //Verify is the first click after the equal sign is a operator or not
 const verify1Caracter = (cara: string) => {
     for (var i = 0; i < operators.length; i++) {
-        if(cara.substring(0, 1) === operators[i]) {
+        if (cara.substring(0, 1) === operators[i]) {
             newOperator = true
         }
+    }
+}
+
+const verifyInvalidFirst = (key: string) => {
+    if (key === '.' || key === '0') {
+        return firstClickValid = true
+    } else {
+        return firstClickValid = false;
     }
 }
 
@@ -40,18 +49,32 @@ botoes.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target as HTMLElement;
         let numeroTecla = target.dataset.int;
+        verifyDot();
 
-        if (numeroTecla === '.' && dot) { //Não permite mais de um ponto por conta
-            return
+        if (contaDisplay!.innerHTML.length === 0) {
+            if (verifyInvalidFirst(numeroTecla!) === true) {
+                alert('Ponto e 0 não é permitido')
+            } else { //ESSE CÓDIGO ESTÁ SE REPETINDO. ISOLAR?__________________________________
+                if (numeroTecla === '.' && dot) { //Não permite mais de um ponto por conta
+                    return
+                } else {
+                    mostraDisplayAtual(numeroTecla!)
+                }
+            }
         } else {
-            mostraDisplayAtual(numeroTecla!)
+            if (numeroTecla === '.' && dot) { //Não permite mais de um ponto por conta
+                return
+            } else {
+                mostraDisplayAtual(numeroTecla!)
+
+            }
         }
     })
 })
 
 operadores.forEach((op) => {
     op.addEventListener('click', (e) => {
-        newNumber = false;        
+        newNumber = false;
         verify1Caracter(contaDisplay!.innerHTML)
 
         if (newOperator) {
@@ -60,7 +83,6 @@ operadores.forEach((op) => {
             resultadoDisplay!.innerHTML = '';
             calcula(contaDisplay!.innerHTML);
         }
-
         newOperator = false;
     })
 })
@@ -69,7 +91,6 @@ operadores.forEach((op) => {
 var resultado: number;
 
 const mostraDisplayAtual = (numeros: string) => {
-    verifyDot();
     if (newNumber) {
         contaDisplay!.innerHTML += numeros;
     } else {
@@ -79,17 +100,16 @@ const mostraDisplayAtual = (numeros: string) => {
 }
 
 const verifyEqual = (equal?: string) => {
-    if (equal === '=' || contaDisplay!.innerHTML === '=')  {
+    if (equal === '=' || contaDisplay!.innerHTML === '=') {
         contaDisplay!.innerHTML = '';
-    } 
+    }
 }
 
 const verifyDot = () => {
     let conta = contaDisplay!.innerHTML;
     for (var i = 0; i < conta.length; i++) {
-        if(conta[i] === '.') {
+        if (conta[i] === '.') {
             dot = true
-            // console.log(dot);
         }
     }
 }
@@ -99,8 +119,8 @@ const calcula = (contaDis: string) => {
     let firstCaracter = contaDisplay!.innerHTML.substring(0, 1);
     let lastCaracter = contaDisplay!.innerHTML.slice(-1);
     //  console.log(lastCaracter);
-    
-     //Criar outra logica para a raiz quadraada? Ja q ela pode ser chamada com apenas um número
+
+    //Criar outra logica para a raiz quadraada? Ja q ela pode ser chamada com apenas um número
     if (firstCaracter === '%' || firstCaracter === '√') {
         porcentage(contaDisplay!.innerHTML, firstCaracter)
         contaDisplay!.innerHTML = lastCaracter;
@@ -116,13 +136,13 @@ const porcentage = (numerosDaConta: string, firstOp: string) => {
         if (resultadoDisplay!.innerHTML.length === 0) {
             alert('Adicione o valor total, e depois a porcentagem desejada')
             contaDisplay!.innerHTML = '';
-        } else if (resultadoDisplay!.innerHTML.length > 0 ) {
-            if(numerosDaConta.substring(0, 1) === '%') {
+        } else if (resultadoDisplay!.innerHTML.length > 0) {
+            if (numerosDaConta.substring(0, 1) === '%') {
                 // newOperator = true; //É verdade?
                 let soNumeros = numerosDaConta.slice(1, -1);
-                
+
                 newOperator = false;
-                
+
                 let concatena = resultadoDisplay!.innerHTML + "*" + `(${soNumeros}/100)`
                 let conta = eval(concatena).toString();
                 resultadoDisplay!.innerHTML = conta;
@@ -131,15 +151,15 @@ const porcentage = (numerosDaConta: string, firstOp: string) => {
     } else if (firstOp === "√") {
         if (resultadoDisplay!.innerHTML.length === 0) {
             if (numerosDaConta.substring(0, 1) === '√') {
-            let soNumeros = Number(numerosDaConta.slice(1, -1));
-            let raiz = Math.sqrt(soNumeros).toString();
-            resultadoDisplay!.innerHTML = raiz;
-            // }
-            newOperator = false;
-            verifyEqual()
+                let soNumeros = Number(numerosDaConta.slice(1, -1));
+                let raiz = Math.sqrt(soNumeros).toString();
+                resultadoDisplay!.innerHTML = raiz;
+                // }
+                newOperator = false;
+                verifyEqual()
             }
         } else if (resultadoDisplay!.innerHTML.length > 0) {
-            
+
         }
     }
     contaDisplay!.innerHTML = firstOp;
@@ -165,9 +185,9 @@ const normalCount = (numerosDisplay: string = '0') => {
         //Last Operator 
         let openasOperador = numerosDisplay.charAt(numerosDisplay.length - 1)
         contaDisplay!.innerHTML = openasOperador;
-        
+
         //Concatena a conta com o resultado
-        if (resultadoDisplay!.innerHTML != '') { 
+        if (resultadoDisplay!.innerHTML != '') {
             let concatenando = resultadoDisplay!.innerHTML.concat(soNumeros);
 
             //Criar função que seja acionada para quando for um operado que não entre no ritmo do eval
@@ -179,9 +199,9 @@ const normalCount = (numerosDisplay: string = '0') => {
             if (novoResultado === '=') {
                 contaDisplay!.innerHTML = ''
             }
-            
+
         } else { //Manda o resultado na primeira conta|| Redundante?
-            resultadoDisplay!.innerHTML = result; 
+            resultadoDisplay!.innerHTML = result;
         }
 
         verifyEqual(openasOperador)

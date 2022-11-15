@@ -7,6 +7,7 @@ const deleteOne = document.getElementById('delete');
 const resultadoDisplay = document.getElementById('calc');
 const contaDisplay = document.getElementById('currentDisplay');
 const equal = document.getElementById('equal');
+let firstClickValid;
 let newNumber;
 let newOperator = true;
 let dot = false;
@@ -18,6 +19,14 @@ const verify1Caracter = (cara) => {
         }
     }
 };
+const verifyInvalidFirst = (key) => {
+    if (key === '.' || key === '0') {
+        return firstClickValid = true;
+    }
+    else {
+        return firstClickValid = false;
+    }
+};
 numeros.forEach((num) => {
     num.addEventListener('click', (e) => {
         newNumber = true;
@@ -27,11 +36,27 @@ botoes.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target;
         let numeroTecla = target.dataset.int;
-        if (numeroTecla === '.' && dot) {
-            return;
+        verifyDot();
+        if (contaDisplay.innerHTML.length === 0) {
+            if (verifyInvalidFirst(numeroTecla) === true) {
+                alert('Ponto e 0 não é permitido');
+            }
+            else {
+                if (numeroTecla === '.' && dot) {
+                    return;
+                }
+                else {
+                    mostraDisplayAtual(numeroTecla);
+                }
+            }
         }
         else {
-            mostraDisplayAtual(numeroTecla);
+            if (numeroTecla === '.' && dot) {
+                return;
+            }
+            else {
+                mostraDisplayAtual(numeroTecla);
+            }
         }
     });
 });
@@ -51,7 +76,6 @@ operadores.forEach((op) => {
 });
 var resultado;
 const mostraDisplayAtual = (numeros) => {
-    verifyDot();
     if (newNumber) {
         contaDisplay.innerHTML += numeros;
     }
