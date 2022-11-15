@@ -70,14 +70,12 @@ const verifyDot = () => {
     for (var i = 0; i < conta.length; i++) {
         if (conta[i] === '.') {
             dot = true;
-            console.log(dot);
         }
     }
 };
 const calcula = (contaDis) => {
     let firstCaracter = contaDisplay.innerHTML.substring(0, 1);
     let lastCaracter = contaDisplay.innerHTML.slice(-1);
-    console.log(lastCaracter);
     if (firstCaracter === '%' || firstCaracter === '√') {
         porcentage(contaDisplay.innerHTML, firstCaracter);
         contaDisplay.innerHTML = lastCaracter;

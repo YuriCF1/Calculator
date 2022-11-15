@@ -10,6 +10,9 @@ const contaDisplay = document.getElementById('currentDisplay');
 
 const equal = document.getElementById('equal');
 
+//CONSERTAR OS 0
+//CONSERTAR OS PONTOS
+
 // let displayCount = contaDisplay!.innerHTML;
 let newNumber: boolean;
 let newOperator: boolean = true;
@@ -37,12 +40,11 @@ botoes.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target as HTMLElement;
         let numeroTecla = target.dataset.int;
-        
+
         if (numeroTecla === '.' && dot) { //Não permite mais de um ponto por conta
             return
         } else {
             mostraDisplayAtual(numeroTecla!)
-            
         }
     })
 })
@@ -87,7 +89,7 @@ const verifyDot = () => {
     for (var i = 0; i < conta.length; i++) {
         if(conta[i] === '.') {
             dot = true
-            console.log(dot);
+            // console.log(dot);
         }
     }
 }
@@ -96,7 +98,7 @@ const verifyDot = () => {
 const calcula = (contaDis: string) => {
     let firstCaracter = contaDisplay!.innerHTML.substring(0, 1);
     let lastCaracter = contaDisplay!.innerHTML.slice(-1);
-     console.log(lastCaracter);
+    //  console.log(lastCaracter);
     
      //Criar outra logica para a raiz quadraada? Ja q ela pode ser chamada com apenas um número
     if (firstCaracter === '%' || firstCaracter === '√') {
@@ -128,7 +130,6 @@ const porcentage = (numerosDaConta: string, firstOp: string) => {
         }
     } else if (firstOp === "√") {
         if (resultadoDisplay!.innerHTML.length === 0) {
-            // alert('Adicione o valor total, e depois a porcentagem desejada')
             if (numerosDaConta.substring(0, 1) === '√') {
             let soNumeros = Number(numerosDaConta.slice(1, -1));
             let raiz = Math.sqrt(soNumeros).toString();
@@ -138,7 +139,7 @@ const porcentage = (numerosDaConta: string, firstOp: string) => {
             verifyEqual()
             }
         } else if (resultadoDisplay!.innerHTML.length > 0) {
-
+            
         }
     }
     contaDisplay!.innerHTML = firstOp;
