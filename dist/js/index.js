@@ -132,7 +132,7 @@ const porcentage = (numerosDaConta, firstOp) => {
                 let raiz = Math.sqrt(soNumeros).toString();
                 resultadoDisplay.innerHTML = raiz;
                 newOperator = false;
-                verifyEqual();
+                verifyEqual(firstOp);
             }
         }
         else if (resultadoDisplay.innerHTML.length > 0) {

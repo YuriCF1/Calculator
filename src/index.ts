@@ -10,10 +10,10 @@ const contaDisplay = document.getElementById('currentDisplay');
 
 const equal = document.getElementById('equal');
 
-//CONSERTAR OS 0
-//CONSERTAR OS PONTOS
+//Usar regex para eliminar os primeiros 0
+//Usar concatenação caso o primeiro caracter seja ponto
 
-// let displayCount = contaDisplay!.innerHTML;
+
 let firstClickValid: boolean;
 let newNumber: boolean;
 let newOperator: boolean = true;
@@ -156,7 +156,7 @@ const porcentage = (numerosDaConta: string, firstOp: string) => {
                 resultadoDisplay!.innerHTML = raiz;
                 // }
                 newOperator = false;
-                verifyEqual()
+                verifyEqual(firstOp)
             }
         } else if (resultadoDisplay!.innerHTML.length > 0) {
 
