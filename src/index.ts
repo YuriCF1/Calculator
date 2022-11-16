@@ -12,7 +12,7 @@ const equal = document.getElementById('equal');
 
 //Usar regex para eliminar os primeiros 0
 //Usar concatenação caso o primeiro caracter seja ponto
-
+//PARSEFLOAT
 
 let firstClickValid: boolean;
 let newNumber: boolean;
@@ -51,23 +51,23 @@ botoes.forEach((num) => {
         let numeroTecla = target.dataset.int;
         verifyDot();
 
-        if (contaDisplay!.innerHTML.length === 0) {
-            if (verifyInvalidFirst(numeroTecla!) === true) {
-                alert('Ponto e 0 não é permitido')
-            } else { //ESSE CÓDIGO ESTÁ SE REPETINDO. ISOLAR?__________________________________
-                if (numeroTecla === '.' && dot) { //Não permite mais de um ponto por conta
-                    return
-                } else {
-                    mostraDisplayAtual(numeroTecla!)
-                }
-            }
-        } else {
+        // if (contaDisplay!.innerHTML.length === 0) {
+        //     if (verifyInvalidFirst(numeroTecla!) === true) {
+        //         alert('Ponto e 0 não é permitido')
+        //     } else { //ESSE CÓDIGO ESTÁ SE REPETINDO. ISOLAR?__________________________________
+        //         if (numeroTecla === '.' && dot) { //Não permite mais de um ponto por conta
+        //             return
+        //         } else {
+        //             mostraDisplayAtual(numeroTecla!)
+        //         }
+        //     }
+        // } else {
             if (numeroTecla === '.' && dot) { //Não permite mais de um ponto por conta
                 return
             } else {
                 mostraDisplayAtual(numeroTecla!)
 
-            }
+            // }
         }
     })
 })
@@ -144,7 +144,8 @@ const porcentage = (numerosDaConta: string, firstOp: string) => {
                 newOperator = false;
 
                 let concatena = resultadoDisplay!.innerHTML + "*" + `(${soNumeros}/100)`
-                let conta = eval(concatena).toString();
+                let paraN = Number(concatena)
+                let conta = parseFloat(concatena).toString();
                 resultadoDisplay!.innerHTML = conta;
             }
         }
@@ -180,9 +181,9 @@ const normalCount = (numerosDisplay: string = '0') => {
     if (contaDisplay!.innerHTML.length >= 2) {
 
         // Making the sum 
-        let result = eval(resultadoDisplay!.innerHTML + soNumeros);
+        let result = parseFloat(resultadoDisplay!.innerHTML + soNumeros).toString();
 
-        //Last Operator 
+        //Last Operator
         let openasOperador = numerosDisplay.charAt(numerosDisplay.length - 1)
         contaDisplay!.innerHTML = openasOperador;
 
@@ -190,7 +191,7 @@ const normalCount = (numerosDisplay: string = '0') => {
         if (resultadoDisplay!.innerHTML != '') {
             let concatenando = resultadoDisplay!.innerHTML.concat(soNumeros);
 
-            //Criar função que seja acionada para quando for um operado que não entre no ritmo do eval
+            //Criar função que seja acionada para quando for um operador que não entre no ritmo do eval
             let novoResultado = eval(concatenando).toString();
 
             resultadoDisplay!.innerHTML = novoResultado; //Resultado final 

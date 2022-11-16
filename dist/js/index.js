@@ -37,26 +37,11 @@ botoes.forEach((num) => {
         let target = e.target;
         let numeroTecla = target.dataset.int;
         verifyDot();
-        if (contaDisplay.innerHTML.length === 0) {
-            if (verifyInvalidFirst(numeroTecla) === true) {
-                alert('Ponto e 0 não é permitido');
-            }
-            else {
-                if (numeroTecla === '.' && dot) {
-                    return;
-                }
-                else {
-                    mostraDisplayAtual(numeroTecla);
-                }
-            }
+        if (numeroTecla === '.' && dot) {
+            return;
         }
         else {
-            if (numeroTecla === '.' && dot) {
-                return;
-            }
-            else {
-                mostraDisplayAtual(numeroTecla);
-            }
+            mostraDisplayAtual(numeroTecla);
         }
     });
 });
@@ -120,7 +105,8 @@ const porcentage = (numerosDaConta, firstOp) => {
                 let soNumeros = numerosDaConta.slice(1, -1);
                 newOperator = false;
                 let concatena = resultadoDisplay.innerHTML + "*" + `(${soNumeros}/100)`;
-                let conta = eval(concatena).toString();
+                let paraN = Number(concatena);
+                let conta = parseFloat(concatena).toString();
                 resultadoDisplay.innerHTML = conta;
             }
         }
@@ -143,7 +129,7 @@ const porcentage = (numerosDaConta, firstOp) => {
 const normalCount = (numerosDisplay = '0') => {
     let soNumeros = numerosDisplay.slice(0, -1);
     if (contaDisplay.innerHTML.length >= 2) {
-        let result = eval(resultadoDisplay.innerHTML + soNumeros);
+        let result = parseFloat(resultadoDisplay.innerHTML + soNumeros).toString();
         let openasOperador = numerosDisplay.charAt(numerosDisplay.length - 1);
         contaDisplay.innerHTML = openasOperador;
         if (resultadoDisplay.innerHTML != '') {
