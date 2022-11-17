@@ -62,10 +62,10 @@ botoes.forEach((num) => {
         //         }
         //     }
         // } else {
-            if (numeroTecla === '.' && dot) { //Não permite mais de um ponto por conta
-                return
-            } else {
-                mostraDisplayAtual(numeroTecla!)
+        if (numeroTecla === '.' && dot) { //Não permite mais de um ponto por conta
+            return
+        } else {
+            mostraDisplayAtual(numeroTecla!)
 
             // }
         }
@@ -138,14 +138,12 @@ const porcentage = (numerosDaConta: string, firstOp: string) => {
             contaDisplay!.innerHTML = '';
         } else if (resultadoDisplay!.innerHTML.length > 0) {
             if (numerosDaConta.substring(0, 1) === '%') {
-                // newOperator = true; //É verdade?
                 let soNumeros = numerosDaConta.slice(1, -1);
 
                 newOperator = false;
 
                 let concatena = resultadoDisplay!.innerHTML + "*" + `(${soNumeros}/100)`
-                let paraN = Number(concatena)
-                let conta = parseFloat(concatena).toString();
+                let conta = eval(concatena).toString();
                 resultadoDisplay!.innerHTML = conta;
             }
         }
@@ -181,7 +179,7 @@ const normalCount = (numerosDisplay: string = '0') => {
     if (contaDisplay!.innerHTML.length >= 2) {
 
         // Making the sum 
-        let result = parseFloat(resultadoDisplay!.innerHTML + soNumeros).toString();
+        let resultInit = parseFloat(resultadoDisplay!.innerHTML + soNumeros).toString();
 
         //Last Operator
         let openasOperador = numerosDisplay.charAt(numerosDisplay.length - 1)
@@ -189,10 +187,21 @@ const normalCount = (numerosDisplay: string = '0') => {
 
         //Concatena a conta com o resultado
         if (resultadoDisplay!.innerHTML != '') {
-            let concatenando = resultadoDisplay!.innerHTML.concat(soNumeros);
+            console.log(resultadoDisplay!.innerHTML);
+            console.log(soNumeros);
+            // let concatenando = resultadoDisplay!.innerHTML.concat(soNumeros);
+            let concatenando = resultadoDisplay!.innerHTML + soNumeros;
+            console.log(concatenando);
 
-            //Criar função que seja acionada para quando for um operador que não entre no ritmo do eval
-            let novoResultado = eval(concatenando).toString();
+            //Criar função que seja acionada para quando for um operador que não entre no ritmo do e val
+            // let novoResultado = eval(concatenando).toString();
+            let novoResultado = parseFloat(concatenando).toString();
+            let a = concatenando    
+            console.log('a', calculates(concatenando));
+
+            function calculates(conta: any) {
+                return new Function('return ' + conta)();
+            }
 
             resultadoDisplay!.innerHTML = novoResultado; //Resultado final 
 
@@ -202,7 +211,7 @@ const normalCount = (numerosDisplay: string = '0') => {
             }
 
         } else { //Manda o resultado na primeira conta|| Redundante?
-            resultadoDisplay!.innerHTML = result;
+            resultadoDisplay!.innerHTML = resultInit;
         }
 
         verifyEqual(openasOperador)

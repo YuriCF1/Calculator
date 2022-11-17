@@ -105,8 +105,7 @@ const porcentage = (numerosDaConta, firstOp) => {
                 let soNumeros = numerosDaConta.slice(1, -1);
                 newOperator = false;
                 let concatena = resultadoDisplay.innerHTML + "*" + `(${soNumeros}/100)`;
-                let paraN = Number(concatena);
-                let conta = parseFloat(concatena).toString();
+                let conta = eval(concatena).toString();
                 resultadoDisplay.innerHTML = conta;
             }
         }
@@ -129,19 +128,27 @@ const porcentage = (numerosDaConta, firstOp) => {
 const normalCount = (numerosDisplay = '0') => {
     let soNumeros = numerosDisplay.slice(0, -1);
     if (contaDisplay.innerHTML.length >= 2) {
-        let result = parseFloat(resultadoDisplay.innerHTML + soNumeros).toString();
+        let resultInit = parseFloat(resultadoDisplay.innerHTML + soNumeros).toString();
         let openasOperador = numerosDisplay.charAt(numerosDisplay.length - 1);
         contaDisplay.innerHTML = openasOperador;
         if (resultadoDisplay.innerHTML != '') {
-            let concatenando = resultadoDisplay.innerHTML.concat(soNumeros);
-            let novoResultado = eval(concatenando).toString();
+            console.log(resultadoDisplay.innerHTML);
+            console.log(soNumeros);
+            let concatenando = resultadoDisplay.innerHTML + soNumeros;
+            console.log(concatenando);
+            let novoResultado = parseFloat(concatenando).toString();
+            let a = concatenando;
+            console.log('a', calculates(concatenando));
+            function calculates(conta) {
+                return new Function('return ' + conta)();
+            }
             resultadoDisplay.innerHTML = novoResultado;
             if (novoResultado === '=') {
                 contaDisplay.innerHTML = '';
             }
         }
         else {
-            resultadoDisplay.innerHTML = result;
+            resultadoDisplay.innerHTML = resultInit;
         }
         verifyEqual(openasOperador);
     }
