@@ -13,6 +13,7 @@ const equal = document.getElementById('equal');
 //Usar regex para eliminar os primeiros 0
 //Usar concatenação caso o primeiro caracter seja ponto
 //PARSEFLOAT
+//Verificar se os dois primeiros números são 0, SE SIM, parseFloat neles
 
 let firstClickValid: boolean;
 let newNumber: boolean;
@@ -176,6 +177,7 @@ const normalCount = (numerosDisplay: string = '0') => {
     // console.log(firstCaracter);
 
     let soNumeros = numerosDisplay.slice(0, -1);
+    console.log('P So', soNumeros);
     if (contaDisplay!.innerHTML.length >= 2) {
 
         // Making the sum 
@@ -187,6 +189,18 @@ const normalCount = (numerosDisplay: string = '0') => {
 
         //Concatena a conta com o resultado
         if (resultadoDisplay!.innerHTML != '') {
+            let firstCaracter = soNumeros.slice(1, 2);
+            let secondCaracter = soNumeros.slice(2, 3);
+            console.log(firstCaracter);
+            console.log(secondCaracter);
+            if (firstCaracter === '0' && secondCaracter === '0') {
+                console.log('SoN',soNumeros);
+
+                soNumeros = openasOperador + parseFloat(soNumeros).toString()
+                console.log('SoN',soNumeros);
+
+            }
+
             console.log(resultadoDisplay!.innerHTML);
             console.log(soNumeros);
             // let concatenando = resultadoDisplay!.innerHTML.concat(soNumeros);
@@ -197,13 +211,15 @@ const normalCount = (numerosDisplay: string = '0') => {
             // let novoResultado = eval(concatenando).toString();
             let novoResultado = parseFloat(concatenando).toString();
             let a = concatenando    
+            let resultadoFiltrado = calculates(concatenando);
             console.log('a', calculates(concatenando));
 
             function calculates(conta: any) {
                 return new Function('return ' + conta)();
             }
 
-            resultadoDisplay!.innerHTML = novoResultado; //Resultado final 
+            // resultadoDisplay!.innerHTML = novoResultado; //Resultado final 
+            resultadoDisplay!.innerHTML = resultadoFiltrado; //Resultado final 
 
             //Tirando o símbolo de 'igual', caso seja clicado
             if (novoResultado === '=') {

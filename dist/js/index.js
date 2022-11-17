@@ -127,22 +127,33 @@ const porcentage = (numerosDaConta, firstOp) => {
 };
 const normalCount = (numerosDisplay = '0') => {
     let soNumeros = numerosDisplay.slice(0, -1);
+    console.log('P So', soNumeros);
     if (contaDisplay.innerHTML.length >= 2) {
         let resultInit = parseFloat(resultadoDisplay.innerHTML + soNumeros).toString();
         let openasOperador = numerosDisplay.charAt(numerosDisplay.length - 1);
         contaDisplay.innerHTML = openasOperador;
         if (resultadoDisplay.innerHTML != '') {
+            let firstCaracter = soNumeros.slice(1, 2);
+            let secondCaracter = soNumeros.slice(2, 3);
+            console.log(firstCaracter);
+            console.log(secondCaracter);
+            if (firstCaracter === '0' && secondCaracter === '0') {
+                console.log('SoN', soNumeros);
+                soNumeros = openasOperador + parseFloat(soNumeros).toString();
+                console.log('SoN', soNumeros);
+            }
             console.log(resultadoDisplay.innerHTML);
             console.log(soNumeros);
             let concatenando = resultadoDisplay.innerHTML + soNumeros;
             console.log(concatenando);
             let novoResultado = parseFloat(concatenando).toString();
             let a = concatenando;
+            let resultadoFiltrado = calculates(concatenando);
             console.log('a', calculates(concatenando));
             function calculates(conta) {
                 return new Function('return ' + conta)();
             }
-            resultadoDisplay.innerHTML = novoResultado;
+            resultadoDisplay.innerHTML = resultadoFiltrado;
             if (novoResultado === '=') {
                 contaDisplay.innerHTML = '';
             }
