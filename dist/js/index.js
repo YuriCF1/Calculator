@@ -1,16 +1,15 @@
 "use strict";
-const numeros = document.querySelectorAll('.buttons-n');
-const operadores = document.querySelectorAll('.buttons-o');
-const botoes = document.querySelectorAll('.button');
+const allNumbers = document.querySelectorAll('.buttons-n');
+const allButtons = document.querySelectorAll('.button');
+const allOperators = document.querySelectorAll('.buttons-o');
 const equal = document.getElementById('equal');
 const deleteAll = document.querySelector('[data-int="delete-all"]');
 const deleteOne = document.getElementById('delete');
 const resultadoDisplay = document.getElementById('calc');
 const contaDisplay = document.getElementById('currentDisplay');
-let firstClickValid;
 let newNumber;
 let newOperator = true;
-let dot = false;
+let dotClicked = false;
 const operators = ['/', '%', 'root', '*', '-', '+'];
 const verify1Caracter = (cara) => {
     for (var i = 0; i < operators.length; i++) {
@@ -19,25 +18,17 @@ const verify1Caracter = (cara) => {
         }
     }
 };
-const verifyInvalidFirst = (key) => {
-    if (key === '.' || key === '0') {
-        return firstClickValid = true;
-    }
-    else {
-        return firstClickValid = false;
-    }
-};
-numeros.forEach((num) => {
+allNumbers.forEach((num) => {
     num.addEventListener('click', (e) => {
         newNumber = true;
     });
 });
-botoes.forEach((num) => {
+allButtons.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target;
         let numeroTecla = target.dataset.int;
         verifyDot();
-        if (numeroTecla === '.' && dot) {
+        if (numeroTecla === '.' && dotClicked) {
             return;
         }
         else {
@@ -45,7 +36,7 @@ botoes.forEach((num) => {
         }
     });
 });
-operadores.forEach((op) => {
+allOperators.forEach((op) => {
     op.addEventListener('click', (e) => {
         newNumber = false;
         verify1Caracter(contaDisplay.innerHTML);
@@ -59,7 +50,6 @@ operadores.forEach((op) => {
         newOperator = false;
     });
 });
-var resultado;
 const mostraDisplayAtual = (numeros) => {
     if (newNumber) {
         contaDisplay.innerHTML += numeros;
@@ -78,7 +68,7 @@ const verifyDot = () => {
     let conta = contaDisplay.innerHTML;
     for (var i = 0; i < conta.length; i++) {
         if (conta[i] === '.') {
-            dot = true;
+            dotClicked = true;
         }
     }
 };
@@ -86,15 +76,15 @@ const calcula = (contaDis) => {
     let firstCaracter = contaDisplay.innerHTML.substring(0, 1);
     let lastCaracter = contaDisplay.innerHTML.slice(-1);
     if (firstCaracter === '%' || firstCaracter === '√') {
-        porcentage(contaDisplay.innerHTML, firstCaracter);
+        porcentageAndRoot(contaDisplay.innerHTML, firstCaracter);
         contaDisplay.innerHTML = lastCaracter;
     }
     else {
         normalCount(contaDis);
     }
-    dot = false;
+    dotClicked = false;
 };
-const porcentage = (numerosDaConta, firstOp) => {
+const porcentageAndRoot = (numerosDaConta, firstOp) => {
     if (firstOp === "%") {
         if (resultadoDisplay.innerHTML.length === 0) {
             alert('Adicione o valor total, e depois a porcentagem desejada');
@@ -127,7 +117,6 @@ const porcentage = (numerosDaConta, firstOp) => {
 };
 const normalCount = (numerosDisplay = '0') => {
     let soNumeros = numerosDisplay.slice(0, -1);
-    console.log('P So', soNumeros);
     if (contaDisplay.innerHTML.length >= 2) {
         let resultInit = parseFloat(resultadoDisplay.innerHTML + soNumeros).toString();
         let openasOperador = numerosDisplay.charAt(numerosDisplay.length - 1);
@@ -135,21 +124,12 @@ const normalCount = (numerosDisplay = '0') => {
         if (resultadoDisplay.innerHTML != '') {
             let firstCaracter = soNumeros.slice(1, 2);
             let secondCaracter = soNumeros.slice(2, 3);
-            console.log(firstCaracter);
-            console.log(secondCaracter);
             if (firstCaracter === '0' && secondCaracter === '0') {
-                console.log('SoN', soNumeros);
                 soNumeros = openasOperador + parseFloat(soNumeros).toString();
-                console.log('SoN', soNumeros);
             }
-            console.log(resultadoDisplay.innerHTML);
-            console.log(soNumeros);
             let concatenando = resultadoDisplay.innerHTML + soNumeros;
-            console.log(concatenando);
             let novoResultado = parseFloat(concatenando).toString();
-            let a = concatenando;
             let resultadoFiltrado = calculates(concatenando);
-            console.log('a', calculates(concatenando));
             function calculates(conta) {
                 return new Function('return ' + conta)();
             }

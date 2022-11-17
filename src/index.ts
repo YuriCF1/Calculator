@@ -1,6 +1,6 @@
-const numbersBtn = document.querySelectorAll('.buttons-n');
-const operadores = document.querySelectorAll('.buttons-o');
+const allNumbers = document.querySelectorAll('.buttons-n');
 const allButtons = document.querySelectorAll('.button');
+const allOperators = document.querySelectorAll('.buttons-o');
 
 const equal = document.getElementById('equal');
 
@@ -10,12 +10,11 @@ const deleteOne = document.getElementById('delete');
 const resultadoDisplay = document.getElementById('calc') as HTMLInputElement;
 const contaDisplay = document.getElementById('currentDisplay');
 
-//Variables____________________
+
+//Variables___________________
 let newNumber: boolean;
 let newOperator: boolean = true;
 let dotClicked: boolean = false;
-
-//Events on buttons____________
 
 //Verify is the first click after the equal sign, if it is a operator or not.
 //If its not, restarts another acount
@@ -28,7 +27,13 @@ const verify1Caracter = (cara: string) => {
     }
 }
 
-//Adding the event of click, in every button
+//Adding the event of click_________
+allNumbers.forEach((num) => {
+    num.addEventListener('click', (e) => {
+        newNumber = true;
+    })
+})
+
 allButtons.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target as HTMLElement;
@@ -43,15 +48,7 @@ allButtons.forEach((num) => {
     })
 })
 
-//Adding the event of click, just in the numbers
-numbersBtn.forEach((num) => {
-    num.addEventListener('click', (e) => {
-        newNumber = true;
-    })
-})
-
-//Operators
-operadores.forEach((op) => {
+allOperators.forEach((op) => {
     op.addEventListener('click', (e) => {
         newNumber = false;
         verify1Caracter(contaDisplay!.innerHTML)
@@ -66,9 +63,9 @@ operadores.forEach((op) => {
     })
 })
 
-//Functions to manage________________
+//Functions to shows and to verify_________
 
-//Shows the current math
+//Shows current count
 const mostraDisplayAtual = (numeros: string) => {
     if (newNumber) {
         contaDisplay!.innerHTML += numeros;
@@ -78,14 +75,14 @@ const mostraDisplayAtual = (numeros: string) => {
     verifyEqual();
 }
 
-//Verify if its equal sign, to erase it from the display
+//Verify if the equal sign was clicked and deletes it
 const verifyEqual = (equal?: string) => {
     if (equal === '=' || contaDisplay!.innerHTML === '=') {
         contaDisplay!.innerHTML = '';
     }
 }
 
-//Verify if a dot was already used in the count
+//Verify if a dot was already used in the current count
 const verifyDot = () => {
     let conta = contaDisplay!.innerHTML;
     for (var i = 0; i < conta.length; i++) {
@@ -95,13 +92,13 @@ const verifyDot = () => {
     }
 }
 
-//Functions to do the math_________________
+//Funtions to calculate_______________
 const calcula = (contaDis: string) => {
     let firstCaracter = contaDisplay!.innerHTML.substring(0, 1);
     let lastCaracter = contaDisplay!.innerHTML.slice(-1);
 
     if (firstCaracter === '%' || firstCaracter === '√') {
-        percentageAndRoot(contaDisplay!.innerHTML, firstCaracter) //Create another function for the root?
+        porcentageAndRoot(contaDisplay!.innerHTML, firstCaracter) //Criar outra função só para a raiz?
         contaDisplay!.innerHTML = lastCaracter;
     } else {
         normalCount(contaDis)
@@ -110,7 +107,7 @@ const calcula = (contaDis: string) => {
 }
 
 //Special counts__________________________________________
-const percentageAndRoot = (numerosDaConta: string, firstOp: string) => {
+const porcentageAndRoot = (numerosDaConta: string, firstOp: string) => {
     if (firstOp === "%") {
         if (resultadoDisplay!.innerHTML.length === 0) {
             alert('Adicione o valor total, e depois a porcentagem desejada')
@@ -132,7 +129,7 @@ const percentageAndRoot = (numerosDaConta: string, firstOp: string) => {
                 let soNumeros = Number(numerosDaConta.slice(1, -1));
                 let raiz = Math.sqrt(soNumeros).toString();
                 resultadoDisplay!.innerHTML = raiz;
-                // }
+
                 newOperator = false;
                 verifyEqual(firstOp)
             }
@@ -143,7 +140,7 @@ const percentageAndRoot = (numerosDaConta: string, firstOp: string) => {
     contaDisplay!.innerHTML = firstOp;
 }
 
-//Function to regular counting_______________
+//Function to regular count_______________________________________________________________
 const normalCount = (numerosDisplay: string = '0') => {
     let soNumeros = numerosDisplay.slice(0, -1);
 
@@ -152,26 +149,23 @@ const normalCount = (numerosDisplay: string = '0') => {
         // Making the math 
         let resultInit = parseFloat(resultadoDisplay!.innerHTML + soNumeros).toString();
 
-        //Getting the last operator clicked to add infront of the next count
+        //Last Operator
         let openasOperador = numerosDisplay.charAt(numerosDisplay.length - 1)
         contaDisplay!.innerHTML = openasOperador;
 
-        //Concat the current math with the last result
+        //Concat with the last operator, to put it again in the display of the count
         if (resultadoDisplay!.innerHTML != '') {
             let firstCaracter = soNumeros.slice(1, 2);
             let secondCaracter = soNumeros.slice(2, 3);
 
-            //Checks if theres more than one zero in front of it
             if (firstCaracter === '0' && secondCaracter === '0') {
                 soNumeros = openasOperador + parseFloat(soNumeros).toString()
             }
 
             let concatenando = resultadoDisplay!.innerHTML + soNumeros;
 
-            //Criar função que seja acionada para quando for um operador que não entre no ritmo do e val
-            let novoResultado = parseFloat(concatenando).toString();   
+            let novoResultado = parseFloat(concatenando).toString(); 
             let resultadoFiltrado = calculates(concatenando);
-            console.log('a', calculates(concatenando));
 
             function calculates(conta: any) {
                 return new Function('return ' + conta)();
@@ -194,11 +188,10 @@ const normalCount = (numerosDisplay: string = '0') => {
     }
 }
 
-//Deleting display______________
+//Delete functions_____________________________________
 deleteAll?.addEventListener('click', (e) => {
     contaDisplay!.innerHTML = ''
     resultadoDisplay!.innerHTML = '';
-
 })
 
 deleteOne?.addEventListener('click', (e) => {
