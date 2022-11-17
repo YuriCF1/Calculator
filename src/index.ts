@@ -1,6 +1,8 @@
-const numeros = document.querySelectorAll('.buttons-n');
+const numbersBtn = document.querySelectorAll('.buttons-n');
 const operadores = document.querySelectorAll('.buttons-o');
-const botoes = document.querySelectorAll('.button');
+const allButtons = document.querySelectorAll('.button');
+
+const equal = document.getElementById('equal');
 
 const deleteAll = document.querySelector('[data-int="delete-all"]');
 const deleteOne = document.getElementById('delete');
@@ -8,21 +10,16 @@ const deleteOne = document.getElementById('delete');
 const resultadoDisplay = document.getElementById('calc') as HTMLInputElement;
 const contaDisplay = document.getElementById('currentDisplay');
 
-const equal = document.getElementById('equal');
-
-//Usar regex para eliminar os primeiros 0
-//Usar concatenação caso o primeiro caracter seja ponto
-//PARSEFLOAT
-//Verificar se os dois primeiros números são 0, SE SIM, parseFloat neles
-
-let firstClickValid: boolean;
+//Variables____________________
 let newNumber: boolean;
 let newOperator: boolean = true;
-let dot: boolean = false;
+let dotClicked: boolean = false;
 
+//Events on buttons____________
+
+//Verify is the first click after the equal sign, if it is a operator or not.
+//If its not, restarts another acount
 const operators = ['/', '%', 'root', '*', '-', '+'];
-
-//Verify is the first click after the equal sign is a operator or not
 const verify1Caracter = (cara: string) => {
     for (var i = 0; i < operators.length; i++) {
         if (cara.substring(0, 1) === operators[i]) {
@@ -31,48 +28,29 @@ const verify1Caracter = (cara: string) => {
     }
 }
 
-const verifyInvalidFirst = (key: string) => {
-    if (key === '.' || key === '0') {
-        return firstClickValid = true
-    } else {
-        return firstClickValid = false;
-    }
-}
-
-//Adding the event of click
-numeros.forEach((num) => {
-    num.addEventListener('click', (e) => {
-        newNumber = true;
-    })
-})
-
-botoes.forEach((num) => {
+//Adding the event of click, in every button
+allButtons.forEach((num) => {
     num.addEventListener('click', (e) => {
         let target = e.target as HTMLElement;
         let numeroTecla = target.dataset.int;
         verifyDot();
 
-        // if (contaDisplay!.innerHTML.length === 0) {
-        //     if (verifyInvalidFirst(numeroTecla!) === true) {
-        //         alert('Ponto e 0 não é permitido')
-        //     } else { //ESSE CÓDIGO ESTÁ SE REPETINDO. ISOLAR?__________________________________
-        //         if (numeroTecla === '.' && dot) { //Não permite mais de um ponto por conta
-        //             return
-        //         } else {
-        //             mostraDisplayAtual(numeroTecla!)
-        //         }
-        //     }
-        // } else {
-        if (numeroTecla === '.' && dot) { //Não permite mais de um ponto por conta
+        if (numeroTecla === '.' && dotClicked) { //Não permite mais de um ponto por conta
             return
         } else {
             mostraDisplayAtual(numeroTecla!)
-
-            // }
         }
     })
 })
 
+//Adding the event of click, just in the numbers
+numbersBtn.forEach((num) => {
+    num.addEventListener('click', (e) => {
+        newNumber = true;
+    })
+})
+
+//Operators
 operadores.forEach((op) => {
     op.addEventListener('click', (e) => {
         newNumber = false;
@@ -88,9 +66,9 @@ operadores.forEach((op) => {
     })
 })
 
-//Functions_______________________________________
-var resultado: number;
+//Functions to manage________________
 
+//Shows the current math
 const mostraDisplayAtual = (numeros: string) => {
     if (newNumber) {
         contaDisplay!.innerHTML += numeros;
@@ -100,39 +78,39 @@ const mostraDisplayAtual = (numeros: string) => {
     verifyEqual();
 }
 
+//Verify if its equal sign, to erase it from the display
 const verifyEqual = (equal?: string) => {
     if (equal === '=' || contaDisplay!.innerHTML === '=') {
         contaDisplay!.innerHTML = '';
     }
 }
 
+//Verify if a dot was already used in the count
 const verifyDot = () => {
     let conta = contaDisplay!.innerHTML;
     for (var i = 0; i < conta.length; i++) {
         if (conta[i] === '.') {
-            dot = true
+            dotClicked = true
         }
     }
 }
 
-//_____________________________________________________________________________________________________
+//Functions to do the math_________________
 const calcula = (contaDis: string) => {
     let firstCaracter = contaDisplay!.innerHTML.substring(0, 1);
     let lastCaracter = contaDisplay!.innerHTML.slice(-1);
-    //  console.log(lastCaracter);
 
-    //Criar outra logica para a raiz quadraada? Ja q ela pode ser chamada com apenas um número
     if (firstCaracter === '%' || firstCaracter === '√') {
-        porcentage(contaDisplay!.innerHTML, firstCaracter)
+        percentageAndRoot(contaDisplay!.innerHTML, firstCaracter) //Create another function for the root?
         contaDisplay!.innerHTML = lastCaracter;
     } else {
-        normalCount(contaDis) //Testeing the function 
+        normalCount(contaDis)
     }
-    dot = false;
+    dotClicked = false;
 }
 
 //Special counts__________________________________________
-const porcentage = (numerosDaConta: string, firstOp: string) => {
+const percentageAndRoot = (numerosDaConta: string, firstOp: string) => {
     if (firstOp === "%") {
         if (resultadoDisplay!.innerHTML.length === 0) {
             alert('Adicione o valor total, e depois a porcentagem desejada')
@@ -165,52 +143,33 @@ const porcentage = (numerosDaConta: string, firstOp: string) => {
     contaDisplay!.innerHTML = firstOp;
 }
 
-//_____________________________________________________________________________________________________
-
+//Function to regular counting_______________
 const normalCount = (numerosDisplay: string = '0') => {
-    // if (numerosDisplay.substring(0, 1) === '%' || numerosDisplay.substring(0, 1) === 'r') {
-    //     numerosDisplay = numerosDisplay.slice(1, -1)
-    //     console.log(numerosDisplay);
-    //     console.log('aasda');
-    // }
-
-    // console.log(firstCaracter);
-
     let soNumeros = numerosDisplay.slice(0, -1);
-    console.log('P So', soNumeros);
+
     if (contaDisplay!.innerHTML.length >= 2) {
 
-        // Making the sum 
+        // Making the math 
         let resultInit = parseFloat(resultadoDisplay!.innerHTML + soNumeros).toString();
 
-        //Last Operator
+        //Getting the last operator clicked to add infront of the next count
         let openasOperador = numerosDisplay.charAt(numerosDisplay.length - 1)
         contaDisplay!.innerHTML = openasOperador;
 
-        //Concatena a conta com o resultado
+        //Concat the current math with the last result
         if (resultadoDisplay!.innerHTML != '') {
             let firstCaracter = soNumeros.slice(1, 2);
             let secondCaracter = soNumeros.slice(2, 3);
-            console.log(firstCaracter);
-            console.log(secondCaracter);
+
+            //Checks if theres more than one zero in front of it
             if (firstCaracter === '0' && secondCaracter === '0') {
-                console.log('SoN',soNumeros);
-
                 soNumeros = openasOperador + parseFloat(soNumeros).toString()
-                console.log('SoN',soNumeros);
-
             }
 
-            console.log(resultadoDisplay!.innerHTML);
-            console.log(soNumeros);
-            // let concatenando = resultadoDisplay!.innerHTML.concat(soNumeros);
             let concatenando = resultadoDisplay!.innerHTML + soNumeros;
-            console.log(concatenando);
 
             //Criar função que seja acionada para quando for um operador que não entre no ritmo do e val
-            // let novoResultado = eval(concatenando).toString();
-            let novoResultado = parseFloat(concatenando).toString();
-            let a = concatenando    
+            let novoResultado = parseFloat(concatenando).toString();   
             let resultadoFiltrado = calculates(concatenando);
             console.log('a', calculates(concatenando));
 
@@ -218,7 +177,6 @@ const normalCount = (numerosDisplay: string = '0') => {
                 return new Function('return ' + conta)();
             }
 
-            // resultadoDisplay!.innerHTML = novoResultado; //Resultado final 
             resultadoDisplay!.innerHTML = resultadoFiltrado; //Resultado final 
 
             //Tirando o símbolo de 'igual', caso seja clicado
@@ -236,6 +194,7 @@ const normalCount = (numerosDisplay: string = '0') => {
     }
 }
 
+//Deleting display______________
 deleteAll?.addEventListener('click', (e) => {
     contaDisplay!.innerHTML = ''
     resultadoDisplay!.innerHTML = '';

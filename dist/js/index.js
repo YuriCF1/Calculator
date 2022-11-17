@@ -2,11 +2,11 @@
 const numeros = document.querySelectorAll('.buttons-n');
 const operadores = document.querySelectorAll('.buttons-o');
 const botoes = document.querySelectorAll('.button');
+const equal = document.getElementById('equal');
 const deleteAll = document.querySelector('[data-int="delete-all"]');
 const deleteOne = document.getElementById('delete');
 const resultadoDisplay = document.getElementById('calc');
 const contaDisplay = document.getElementById('currentDisplay');
-const equal = document.getElementById('equal');
 let firstClickValid;
 let newNumber;
 let newOperator = true;
