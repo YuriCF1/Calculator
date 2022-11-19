@@ -1,79 +1,53 @@
 body {
-    font-family: 'Russo One', sans-serif;
-
+  font-family: "Russo One", sans-serif;
 }
 
 .pad {
-    width: 70%;
-    font-size: 2rem;
+  width: 70%;
+  font-size: 2rem;
 }
 
 .operations {
-    display: flex;
-    flex-direction: column;
-
+  display: flex;
+  flex-direction: column;
 }
 
 .operations-edit {
-    display: flex;
-    
-}
-.operations-math {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-
-.buttons-c, .buttons-e {
-    width: 50%;
-    height: 5rem;
-
-    box-sizing: border-box;
-    border: outset 5px grey;
-    background-color: white;
-    cursor: pointer;
-
-}
-
-.buttons-o {
-    width: 100%;
-    height: 5rem; 
-
-    box-sizing: border-box;
-    border: outset 5px grey;
-    background-color: white;
-    cursor: pointer;
-
-
-}
-
-/* .operations {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 20rem;
-    height: 100%;
+  display: flex;
 }
 
 .operations-math {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 10rem;
-    height: 100%; 
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.buttons-c,
+.buttons-e {
+  width: 50%;
+  height: 5rem;
+
+  box-sizing: border-box;
+  border: outset 5px grey;
+  background-color: white;
+  cursor: pointer;
 }
 
 .buttons-o {
-    font-size: 4rem;
-    text-align: center;
-    width: 33.33%;
-    height: 26%;
-    padding: 20% 0;
+  width: 100%;
+  height: 5rem;
 
-    box-sizing: border-box;
-    border: outset 5px grey;
-    background-color: white;
-    cursor: pointer;
+  box-sizing: border-box;
+  border: outset 5px grey;
+  background-color: white;
+  cursor: pointer;
+}
 
-} */
+@media screen and (max-width: 500px) {
+  .buttons-e {
+    font-size: 1.4rem;
+  }
 
+  .buttons-o {
+    height: 10.32vh;
+  }
+}
