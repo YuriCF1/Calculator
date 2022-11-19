@@ -199,3 +199,11 @@ deleteOne?.addEventListener('click', (e) => {
     let lastCaracter = allCounting.substring(0, allCounting.length - 1);
     contaDisplay!.innerHTML = lastCaracter;
 })
+
+// //Style function______________________________________
+// document.addEventListener('mousedown', () => {
+//     allNumbers.forEach((tag) => {
+//         tag.setAttribute("class", "buttons-n-clicked:hover");
+    
+//     })
+// })
