@@ -207,3 +207,36 @@ deleteOne?.addEventListener('click', (e) => {
     
 //     })
 // })
+
+
+//Criar função nos eventListeners?
+window.onkeydown=function(ev)
+    {
+      let key = ev.key
+      console.log(key);
+      
+    //   switch (key) {
+    //     case '1':
+
+    //     break
+
+    //   }
+   }
+
+
+
+//    switch (operaçãoPendente) {
+//     case '+':
+//       resultado = valorAnterior + valorAtual()
+//       break
+//     case '-':
+//       resultado = valorAnterior - valorAtual()
+//       break
+//     case '*':
+//       resultado = valorAnterior * valorAtual()
+//       break
+//     case '/':
+//       resultado = valorAnterior / valorAtual()
+//       break
+//   }
+

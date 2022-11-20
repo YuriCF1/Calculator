@@ -156,3 +156,7 @@ deleteOne === null || deleteOne === void 0 ? void 0 : deleteOne.addEventListener
     let lastCaracter = allCounting.substring(0, allCounting.length - 1);
     contaDisplay.innerHTML = lastCaracter;
 });
+window.onkeydown = function (ev) {
+    let key = ev.key;
+    console.log(key);
+};
