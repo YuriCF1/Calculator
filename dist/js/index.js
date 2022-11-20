@@ -28,28 +28,35 @@ allButtons.forEach((num) => {
         let target = e.target;
         let numeroTecla = target.dataset.int;
         verifyDot();
-        if (numeroTecla === '.' && dotClicked) {
-            return;
-        }
-        else {
-            mostraDisplayAtual(numeroTecla);
-        }
+        allBtn(numeroTecla);
     });
 });
+function allBtn(key) {
+    verifyDot();
+    if (key === '.' && dotClicked) {
+        return;
+    }
+    else {
+        mostraDisplayAtual(key);
+    }
+}
 allOperators.forEach((op) => {
     op.addEventListener('click', (e) => {
-        newNumber = false;
-        verify1Caracter(contaDisplay.innerHTML);
-        if (newOperator) {
-            calcula(contaDisplay.innerHTML);
-        }
-        else {
-            resultadoDisplay.innerHTML = '';
-            calcula(contaDisplay.innerHTML);
-        }
-        newOperator = false;
+        allOp();
     });
 });
+function allOp() {
+    newNumber = false;
+    verify1Caracter(contaDisplay.innerHTML);
+    if (newOperator) {
+        calcula(contaDisplay.innerHTML);
+    }
+    else {
+        resultadoDisplay.innerHTML = '';
+        calcula(contaDisplay.innerHTML);
+    }
+    newOperator = false;
+}
 const mostraDisplayAtual = (numeros) => {
     if (newNumber) {
         contaDisplay.innerHTML += numeros;
@@ -159,4 +166,74 @@ deleteOne === null || deleteOne === void 0 ? void 0 : deleteOne.addEventListener
 window.onkeydown = function (ev) {
     let key = ev.key;
     console.log(key);
+    switch (key) {
+        case '1':
+            newNumber = true;
+            allBtn(key);
+            break;
+        case '2':
+            newNumber = true;
+            allBtn(key);
+            break;
+        case '3':
+            newNumber = true;
+            allBtn(key);
+            break;
+        case '4':
+            newNumber = true;
+            allBtn(key);
+            break;
+        case '5':
+            newNumber = true;
+            allBtn(key);
+            break;
+        case '6':
+            newNumber = true;
+            allBtn(key);
+            break;
+        case '7':
+            newNumber = true;
+            allBtn(key);
+            break;
+        case '8':
+            newNumber = true;
+            allBtn(key);
+            break;
+        case '9':
+            newNumber = true;
+            allBtn(key);
+            break;
+        case '0':
+            newNumber = true;
+            allBtn(key);
+            break;
+        case '+':
+            allBtn(key);
+            allOp();
+            break;
+        case '-':
+            allBtn(key);
+            allOp();
+            break;
+        case '*':
+            allBtn(key);
+            allOp();
+            break;
+        case '/':
+            allBtn(key);
+            allOp();
+            break;
+        case 'Enter':
+            allBtn("=");
+            allOp();
+            break;
+        case '.':
+            newNumber = true;
+            allBtn(key);
+            break;
+        case ',':
+            newNumber = true;
+            allBtn('.');
+            break;
+    }
 };

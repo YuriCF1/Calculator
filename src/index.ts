@@ -39,29 +39,56 @@ allButtons.forEach((num) => {
         let target = e.target as HTMLElement;
         let numeroTecla = target.dataset.int;
         verifyDot();
-
-        if (numeroTecla === '.' && dotClicked) { //Não permite mais de um ponto por conta
-            return
-        } else {
-            mostraDisplayAtual(numeroTecla!)
-        }
+        
+        // if (numeroTecla === '.' && dotClicked) { //Não permite mais de um ponto por conta
+        //     return
+        // } else {
+            //     mostraDisplayAtual(numeroTecla!)
+            // }
+            
+            allBtn(numeroTecla!)
+        })
     })
-})
+    
+    function allBtn(key: string) {
+    verifyDot();    
+    if (key === '.' && dotClicked) { //Não permite mais de um ponto por conta
+        return
+    } else {
+        mostraDisplayAtual(key!)
+    }
+
+}
 
 allOperators.forEach((op) => {
     op.addEventListener('click', (e) => {
-        newNumber = false;
-        verify1Caracter(contaDisplay!.innerHTML)
+        // newNumber = false;
+        // verify1Caracter(contaDisplay!.innerHTML)
 
-        if (newOperator) {
-            calcula(contaDisplay!.innerHTML);
-        } else {
-            resultadoDisplay!.innerHTML = '';
-            calcula(contaDisplay!.innerHTML);
-        }
-        newOperator = false;
+        // if (newOperator) {
+        //     calcula(contaDisplay!.innerHTML);
+        // } else {
+        //     resultadoDisplay!.innerHTML = '';
+        //     calcula(contaDisplay!.innerHTML);
+        // }
+        // newOperator = false;
+        allOp()
     })
 })
+
+function allOp() {
+    newNumber = false;
+    verify1Caracter(contaDisplay!.innerHTML)
+
+    if (newOperator) {
+        calcula(contaDisplay!.innerHTML);
+    } else {
+        resultadoDisplay!.innerHTML = '';
+        calcula(contaDisplay!.innerHTML);
+    }
+    newOperator = false;
+
+}
 
 //Functions to shows and to verify_________
 
@@ -164,7 +191,7 @@ const normalCount = (numerosDisplay: string = '0') => {
 
             let concatenando = resultadoDisplay!.innerHTML + soNumeros;
 
-            let novoResultado = parseFloat(concatenando).toString(); 
+            let novoResultado = parseFloat(concatenando).toString();
             let resultadoFiltrado = calculates(concatenando);
 
             function calculates(conta: any) {
@@ -200,29 +227,96 @@ deleteOne?.addEventListener('click', (e) => {
     contaDisplay!.innerHTML = lastCaracter;
 })
 
-// //Style function______________________________________
-// document.addEventListener('mousedown', () => {
-//     allNumbers.forEach((tag) => {
-//         tag.setAttribute("class", "buttons-n-clicked:hover");
-    
-//     })
-// })
-
-
 //Criar função nos eventListeners?
-window.onkeydown=function(ev)
-    {
-      let key = ev.key
-      console.log(key);
-      
-    //   switch (key) {
-    //     case '1':
+window.onkeydown = function (ev) {
+    let key = ev.key
+    console.log(key);
 
-    //     break
+    // allBtn(key)
 
-    //   }
-   }
+    switch (key) {
+        case '1':
+            newNumber = true;
+            allBtn(key)
+            break
+        case '2':
+            newNumber = true;
+            allBtn(key)
 
+            break
+        case '3':
+            newNumber = true;
+            allBtn(key)
+
+            break
+        case '4':
+            newNumber = true;
+            allBtn(key)
+
+            break
+        case '5':
+            newNumber = true;
+            allBtn(key)
+
+            break
+        case '6':
+            newNumber = true;
+            allBtn(key)
+
+            break
+        case '7':
+            newNumber = true;
+            allBtn(key)
+
+            break
+        case '8':
+            newNumber = true;
+            allBtn(key)
+
+            break
+        case '9':
+            newNumber = true;
+            allBtn(key)
+
+            break
+        case '0':
+            newNumber = true;
+            allBtn(key)
+            break
+
+        //Operators_________
+        case '+':
+            allBtn(key)
+            allOp()
+            break
+        case '-':
+            allBtn(key)
+            allOp()
+            break
+        case '*':
+            allBtn(key)
+            allOp()
+            break
+        case '/':
+            allBtn(key)
+            allOp()
+            break
+        case 'Enter':
+            allBtn("=") 
+            allOp()
+            break
+
+        case '.':
+            newNumber = true;
+            allBtn(key) 
+            break
+        case ',':
+            newNumber = true;
+            allBtn('.') 
+            break
+
+    }
+}
 
 
 //    switch (operaçãoPendente) {
