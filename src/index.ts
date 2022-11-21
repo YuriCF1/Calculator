@@ -185,6 +185,7 @@ const normalCount = (numerosDisplay: string = '0') => {
             let firstCaracter = soNumeros.slice(1, 2);
             let secondCaracter = soNumeros.slice(2, 3);
 
+            //Replace the unecessary leading zeros
             if (firstCaracter === '0' && secondCaracter === '0') {
                 soNumeros = openasOperador + parseFloat(soNumeros).toString()
             }
@@ -194,6 +195,7 @@ const normalCount = (numerosDisplay: string = '0') => {
             let novoResultado = parseFloat(concatenando).toString();
             let resultadoFiltrado = calculates(concatenando);
 
+            //Make the math, not using eval method. MDN doenst recomend
             function calculates(conta: any) {
                 return new Function('return ' + conta)();
             }
@@ -230,9 +232,6 @@ deleteOne?.addEventListener('click', (e) => {
 //Criar função nos eventListeners?
 window.onkeydown = function (ev) {
     let key = ev.key
-    console.log(key);
-
-    // allBtn(key)
 
     switch (key) {
         case '1':

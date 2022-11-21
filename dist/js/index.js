@@ -165,7 +165,6 @@ deleteOne === null || deleteOne === void 0 ? void 0 : deleteOne.addEventListener
 });
 window.onkeydown = function (ev) {
     let key = ev.key;
-    console.log(key);
     switch (key) {
         case '1':
             newNumber = true;
