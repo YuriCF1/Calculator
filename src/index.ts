@@ -314,23 +314,5 @@ window.onkeydown = function (ev) {
             newNumber = true;
             allBtn('.') 
             break
-
     }
 }
-
-
-//    switch (operaçãoPendente) {
-//     case '+':
-//       resultado = valorAnterior + valorAtual()
-//       break
-//     case '-':
-//       resultado = valorAnterior - valorAtual()
-//       break
-//     case '*':
-//       resultado = valorAnterior * valorAtual()
-//       break
-//     case '/':
-//       resultado = valorAnterior / valorAtual()
-//       break
-//   }
-
