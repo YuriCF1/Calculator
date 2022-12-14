@@ -144,3 +144,12 @@ html {
     margin-right: 0rem;
   }
 }
+/* _________________________________________________________________________________________________________ */
+.copywrite {
+    color: #898ea0;
+    margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

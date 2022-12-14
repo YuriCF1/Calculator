@@ -230,6 +230,7 @@ deleteOne?.addEventListener('click', (e) => {
 })
 
 //Criar função nos eventListeners?
+//I also can do an array and create a map for comparison for each possible number typed in number pad
 window.onkeydown = function (ev) {
     let key = ev.key
 
@@ -315,3 +316,9 @@ window.onkeydown = function (ev) {
             break
     }
 }
+
+// Colocando a data atual
+const copy = document.getElementById('project_Year') as HTMLElement
+let yearNow = new Date().getFullYear()
+console.log(copy);
+copy!.innerHTML = `&copy; Calculadora - ${yearNow} - yurifdev@gmail.com`

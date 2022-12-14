@@ -236,3 +236,7 @@ window.onkeydown = function (ev) {
             break;
     }
 };
+const copy = document.getElementById('project_Year');
+let yearNow = new Date().getFullYear();
+console.log(copy);
+copy.innerHTML = `&copy; Calculadora - ${yearNow} - yurifdev@gmail.com`;
