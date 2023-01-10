@@ -28,7 +28,8 @@ Made to train TypeScript skills of a very used tool as calculator is
 - [ X ] Result appearing while the operations continues
 
 
-### Deploy do projeto: Done
+### Deploy of the project: Done
+https://yuricf1.github.io/Calculator/
 
 ## 🤝 Colaborators
 
