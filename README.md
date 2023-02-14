@@ -5,13 +5,7 @@
 A page made to show a calculator
 
 ## Descrição
-Made to train JavaScript skills of a very used tool as calculator is
-
-<!--- ### Detalhes
-A dinâmica das cores significa sempre algo a respeito do tempo. Então, quando o card está <br>
-Azul - Tempo superior a um dia, ou data a ser definida <br>
-Laranja - Tempo inferior a 24h <br>
-Vermelho - Tarefa atrasada --->
+Made to train TypeScript skills of a very used tool as calculator is
 
 <div id='comeco'>
  </div>
@@ -23,18 +17,19 @@ Vermelho - Tarefa atrasada --->
 
 ### Steps
 
-- [ ] HTML structure
-- [ ] CSS Style
-- [ ] Sum operation
-- [ ] Subtraction operation
-- [ ] Subtraction operation
-- [ ] Multiply operation
-- [ ] Divistion operation
+- [ X ] HTML structure
+- [ X ] CSS Style
+- [ X ] Sum operation
+- [ X ] Subtraction operation
+- [ X ] Subtraction operation
+- [ X ] Multiply operation
+- [ X ] Divistion operation
+- [ X ] Use of Number Pad
+- [ X ] Result appearing while the operations continues
 
 
-### Deploy do projeto: Still to come
-
-
+### Deploy of the project: Done
+https://yuricf1.github.io/Calculator/
 
 ## 🤝 Colaborators
 
