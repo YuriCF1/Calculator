@@ -10,6 +10,11 @@ const deleteOne = document.getElementById('delete');
 const resultadoDisplay = document.getElementById('calc') as HTMLInputElement;
 const contaDisplay = document.getElementById('currentDisplay');
 
+//Changing the whole CSS bases on user's device width
+let larguraDispositivo : number = window.innerWidth;
+if((larguraDispositivo: number) => 390) {
+    document.documentElement.style.scale = "0.89";
+}
 
 //Variables___________________
 let newNumber: boolean;

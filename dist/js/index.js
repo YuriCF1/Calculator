@@ -7,6 +7,10 @@ const deleteAll = document.querySelector('[data-int="delete-all"]');
 const deleteOne = document.getElementById('delete');
 const resultadoDisplay = document.getElementById('calc');
 const contaDisplay = document.getElementById('currentDisplay');
+let larguraDispositivo = window.innerWidth;
+if ((larguraDispositivo) => 390) {
+    document.documentElement.style.scale = "0.89";
+}
 let newNumber;
 let newOperator = true;
 let dotClicked = false;
