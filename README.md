@@ -2,7 +2,7 @@
 
 <!---Esses são exemplos. Veja https://shields.io para outras pessoas ou para personalizar este conjunto de escudos. Você pode querer incluir dependências, status do projeto e informações de licença aqui--->
 ## About it
-A page made to show a calculator
+A page made to show a calculator. Training the TS knowledge
 
 ## Descrição
 Made to train TypeScript skills of a very used tool as calculator is
@@ -13,7 +13,7 @@ Made to train TypeScript skills of a very used tool as calculator is
 ## Linguagens
 - HTML
 - CSS
-- JavaScript
+- TypeScript
 
 ### Steps
 
@@ -21,11 +21,12 @@ Made to train TypeScript skills of a very used tool as calculator is
 - [ X ] CSS Style
 - [ X ] Sum operation
 - [ X ] Subtraction operation
-- [ X ] Subtraction operation
 - [ X ] Multiply operation
 - [ X ] Divistion operation
 - [ X ] Use of Number Pad
 - [ X ] Result appearing while the operations continues
+
+<img src="https://github.com/YuriCF1/Calculator/blob/main/assets/Example.png?raw=true" alt="imagem do site">
 
 
 ### Deploy of the project: Done
